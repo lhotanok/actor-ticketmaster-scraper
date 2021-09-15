@@ -10,14 +10,7 @@ export async function handleConcertsStartPage(context) {
     const { genres } = await Apify.getInput('genres');
     const lowerGenres = genres.map((genre) => genre.toLowerCase());
 
-    let pageGenres;
-    if (context.page) {
-        log.info('Crawling with PuppeteerCrawler.');
-        pageGenres = await getGenresWithPuppeteer(context.page);
-    } else if (context.$) {
-        log.info('Crawling with CheerioCrawler.');
-        pageGenres = await getGenresWithCheerio(context.$);
-    }
+    const pageGenres = await getPageGenres(context);
 
     const filteredPageGenres = pageGenres.filter((genre) => {
         const lowerCaseGenre = genre.title.toLowerCase();
@@ -35,15 +28,34 @@ export async function handleConcertsStartPage(context) {
 
 /**
  *
- * @param {Puppeteer.Page} page
+ * @param {Object} context
  * @returns {Promise<Object[{ id, title }]>} Extracted genres
  */
-async function getGenresWithPuppeteer(page) {
+async function getPageGenres(context) {
     const genresFilterSelector = '[data-tid=filtersPanel] [data-tid=genresFilter]';
     const optionsSelector = '[role=listbox]>[role=option]';
 
     const selector = `${genresFilterSelector} ${optionsSelector}`;
 
+    let pageGenres;
+    if (context.page) {
+        log.info('Crawling with PuppeteerCrawler.');
+        pageGenres = await getGenresWithPuppeteer(context.page, selector);
+    } else if (context.$) {
+        log.info('Crawling with CheerioCrawler.');
+        pageGenres = await getGenresWithCheerio(context.$, selector);
+    }
+
+    return pageGenres;
+}
+
+/**
+ *
+ * @param {Puppeteer.Page} page
+ * @param {String} selector Selector for genre elements targeting
+ * @returns {Promise<Object[{ id, title }]>} Extracted genres
+ */
+async function getGenresWithPuppeteer(page, selector) {
     // extract genre id and title
     return page.$$eval(selector, (elements) => elements.map((el) => {
         return {
@@ -56,18 +68,13 @@ async function getGenresWithPuppeteer(page) {
 /**
  *
  * @param {Object} $ jQuery access object
+ * @param {String} selector Selector for genre elements targeting
  * @returns {Promise<Object[{ id, title }]>} Extracted genres
  */
-async function getGenresWithCheerio($) {
-    const genresFilterSelector = '[data-tid=filtersPanel] [data-tid=genresFilter]';
-    const optionsSelector = '[role=listbox]>[role=option]';
-
-    const selector = `${genresFilterSelector} ${optionsSelector}`;
-
+async function getGenresWithCheerio($, selector) {
     // extract genre id and title
     const genres = [];
-    $(selector).each((index, el) => {
-        log.info(el);
+    $(selector).each((_index, el) => {
         genres.push({
             id: $(el).attr('value'),
             title: $(el).attr('title'),
