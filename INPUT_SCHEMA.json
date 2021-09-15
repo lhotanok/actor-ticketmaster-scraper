@@ -9,7 +9,7 @@
       "description": "URLs to start with.",
       "editor": "requestListSources",
       "prefill": [
-        { "url": "https://apify.com" }
+        { "url": "https://www.ticketmaster.com/discover/concerts" }
       ]
     },
     "genres": {
