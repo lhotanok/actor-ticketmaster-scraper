@@ -1,0 +1,18 @@
+name: Build latest version
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Install dependencies
+      - uses: actions/checkout@v2
+      - run: npm install
+      
+      # Build latest version
+      - uses: distributhor/workflow-webhook@v1
+        env:
+          webhook_url: ${{ secrets.BUILD_ACTOR_ENDPOINT }}
+          webhook_secret: ${{ secrets.APIFY_TOKEN }}
