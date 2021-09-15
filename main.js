@@ -17,30 +17,43 @@ Apify.main(async () => {
         countryCode: 'US',
     });
 
-    const crawler = new Apify.PuppeteerCrawler({
+    // const puppeteerCrawler = new Apify.PuppeteerCrawler({
+    //     requestList,
+    //     requestQueue,
+    //     proxyConfiguration,
+    //     // launchContext: {
+    //     //     useChrome: true,
+    //     //     stealth: true,
+    //     //     // launchOptions: {
+    //     //     //     headless: false,
+    //     //     // },
+    //     // },
+    //     handlePageFunction,
+    // });
+
+    const cheerioCrawler = new Apify.CheerioCrawler({
         requestList,
         requestQueue,
         proxyConfiguration,
-        // launchContext: {
-        //     useChrome: true,
-        //     stealth: true,
-        //     // launchOptions: {
-        //     //     headless: false,
-        //     // },
-        // },
-        handlePageFunction: async (context) => {
-            const { url, userData: { label } } = context.request;
-            log.info('Page opened.', { label, url });
-            switch (label) {
-                case 'GENRE':
-                    return handleGenrePage(context);
-                default:
-                    return handleConcertsStartPage(context);
-            }
-        },
+        handlePageFunction,
     });
 
     log.info('Starting the crawl.');
-    await crawler.run();
+
+    await cheerioCrawler.run();
+    // await puppeteerCrawler.run();
+
     log.info('Crawl finished.');
 });
+
+async function handlePageFunction(context) {
+    const { url, userData: { label } } = context.request;
+    log.info('Page opened.', { label, url });
+
+    switch (label) {
+        case 'GENRE':
+            return handleGenrePage(context);
+        default:
+            return handleConcertsStartPage(context);
+    }
+}

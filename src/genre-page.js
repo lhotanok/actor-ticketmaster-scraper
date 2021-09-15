@@ -9,10 +9,16 @@ const { saveSnapshot } = Apify.utils.puppeteer;
 /**
  *
  * @param {Object} context
- * @param {Puppeteer.Page} context.page
  * @param {Apify.Request} context.request
  */
-export async function handleGenrePage({ page, request }) {
+export async function handleGenrePage(context) {
+    const { request } = context;
     log.info(`Crawling concerts of genre category: ${request.userData.title}`);
-    await saveSnapshot(page, { key: `test-screen-${request.userData.id}` });
+
+    if (context.page) {
+        log.info('Crawling with PuppeteerCrawler.');
+        await saveSnapshot(context.page, { key: `test-screen-${request.userData.id}` });
+    } else if (context.$) {
+        log.info('Crawling with CheerioCrawler.');
+    }
 }

@@ -6,19 +6,22 @@ import Puppeteer from 'puppeteer';
 
 const { utils: { log } } = Apify;
 
-export async function handleConcertsStartPage({ page, crawler }) {
+export async function handleConcertsStartPage(context) {
     const { genres } = await Apify.getInput('genres');
     const lowerGenres = genres.map((genre) => genre.toLowerCase());
 
-    const pageGenres = await getGenres(page);
+    let pageGenres;
+    if (context.page) {
+        log.info('Crawling with PuppeteerCrawler.');
+        pageGenres = await getGenresWithPuppeteer(context.page);
+    } else if (context.$) {
+        log.info('Crawling with CheerioCrawler.');
+        pageGenres = await getGenresWithCheerio(context.$);
+    }
 
     const filteredPageGenres = pageGenres.filter((genre) => {
         const lowerCaseGenre = genre.title.toLowerCase();
-        log.info(`LowerCase page genre: ${lowerCaseGenre}`);
-        const requested = lowerGenres.filter((reqGenre) => {
-            log.info(`Requested lower case genre: ${reqGenre}`);
-            return lowerCaseGenre.includes(reqGenre);
-        });
+        const requested = lowerGenres.filter((reqGenre) => lowerCaseGenre.includes(reqGenre));
 
         return requested.length !== 0;
     });
@@ -27,26 +30,51 @@ export async function handleConcertsStartPage({ page, crawler }) {
     log.info(`Requested genres: ${JSON.stringify(genres)}`);
     log.info(`Filtered genres: ${JSON.stringify(filteredPageGenres)}`);
 
-    await enqueueGenresToScrape(filteredPageGenres, crawler.requestQueue);
+    await enqueueGenresToScrape(filteredPageGenres, context.crawler.requestQueue);
 }
 
 /**
  *
  * @param {Puppeteer.Page} page
+ * @returns {Promise<Object[{ id, title }]>} Extracted genres
  */
-async function getGenres(page) {
+async function getGenresWithPuppeteer(page) {
     const genresFilterSelector = '[data-tid=filtersPanel] [data-tid=genresFilter]';
     const optionsSelector = '[role=listbox]>[role=option]';
 
     const selector = `${genresFilterSelector} ${optionsSelector}`;
 
-    // extract genre id values
+    // extract genre id and title
     return page.$$eval(selector, (elements) => elements.map((el) => {
         return {
             id: el.getAttribute('value'),
             title: el.getAttribute('title'),
         };
     }));
+}
+
+/**
+ *
+ * @param {Object} $ jQuery access object
+ * @returns {Promise<Object[{ id, title }]>} Extracted genres
+ */
+async function getGenresWithCheerio($) {
+    const genresFilterSelector = '[data-tid=filtersPanel] [data-tid=genresFilter]';
+    const optionsSelector = '[role=listbox]>[role=option]';
+
+    const selector = `${genresFilterSelector} ${optionsSelector}`;
+
+    // extract genre id and title
+    const genres = [];
+    $(selector).each((index, el) => {
+        log.info(el);
+        genres.push({
+            id: $(el).attr('value'),
+            title: $(el).attr('title'),
+        });
+    });
+
+    return genres;
 }
 
 /**
@@ -62,8 +90,10 @@ async function enqueueGenresToScrape(genres, requestQueue) {
         // Ticketmaster API
         const queryParams = {
             classificationId: id,
-            radius: 100,
+
+            // search filter
             sort: 'date%2Casc',
+            radius: 100,
             unit: 'miles',
             daterange: 'all',
         };
