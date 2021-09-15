@@ -1,0 +1,24 @@
+{
+  "title": "Input schema for ticketmaster-scraper actor.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "startUrls": {
+      "title": "Start URLs",
+      "type": "array",
+      "description": "URLs to start with.",
+      "editor": "requestListSources",
+      "prefill": [
+        { "url": "https://apify.com" }
+      ]
+    },
+    "genres": {
+      "title": "Genres",
+      "type": "array",
+      "description": "Genres to filter.",
+      "editor": "stringList",
+      "prefill": ["Rock", "Pop", "Metal"]
+    }
+  },
+  "required": []
+}
