@@ -14,5 +14,5 @@ jobs:
       # Build latest version
       - uses: distributhor/workflow-webhook@v1
         env:
-          webhook_url: ${{ secrets.BUILD_ACTOR_ENDPOINT }}
+          webhook_url: ${{ secrets.BUILD_ENDPOINT }}
           webhook_secret: ${{ secrets.APIFY_TOKEN }}
