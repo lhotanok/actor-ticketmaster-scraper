@@ -21,9 +21,8 @@ export async function handleConcertsStartPage(context) {
         return requested.length !== 0;
     });
 
-    log.info(`Page genres: ${JSON.stringify(pageGenres)}`);
-    log.info(`Requested genres: ${JSON.stringify(genres)}`);
-    log.info(`Filtered genres: ${JSON.stringify(filteredPageGenres)}`);
+    log.info(`Requested genres: ${JSON.stringify(genres, null, 2)}`);
+    log.info(`Filtered genres: ${JSON.stringify(filteredPageGenres, null, 2)}`);
 
     await enqueueGenresToScrape(filteredPageGenres, context.crawler.requestQueue);
 }
@@ -69,7 +68,7 @@ async function getGenresWithPuppeteer(page, selector) {
 
 /**
  *
- * @param {Object} $ jQuery access object
+ * @param {Object} $ Cheerio access object
  * @param {String} selector Selector for genre elements targeting
  * @returns {Promise<Object[{ id, title }]>} Extracted genres
  */
