@@ -17,24 +17,19 @@ Apify.main(async () => {
         countryCode: 'US',
     });
 
-    // const puppeteerCrawler = new Apify.PuppeteerCrawler({
-    //     requestList,
-    //     requestQueue,
-    //     proxyConfiguration,
-    //     // launchContext: {
-    //     //     useChrome: true,
-    //     //     stealth: true,
-    //     //     // launchOptions: {
-    //     //     //     headless: false,
-    //     //     // },
-    //     // },
-    //     handlePageFunction,
-    // });
+    const pragueGeoHash = 'u2fk';
 
     const cheerioCrawler = new Apify.CheerioCrawler({
         requestList,
         requestQueue,
         proxyConfiguration,
+        preNavigationHooks: [
+            async (_crawlingContext, requestAsBrowserOptions) => {
+                requestAsBrowserOptions.headers = {
+                    Cookie: `discovery_location={"geoHash":"${pragueGeoHash}"}`,
+                };
+            },
+        ],
         handlePageFunction,
     });
 

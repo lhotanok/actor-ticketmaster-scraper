@@ -9,7 +9,9 @@ const { utils: { log } } = Apify;
  */
 export async function handleEventSearchPage(context) {
     const { request } = context;
-    log.info(`Crawling events of category: ${request.userData.title}`);
+
+    log.info(`Crawling events of category: ${request.userData.categoryName}.`);
+    log.info(`Classification: ${request.userData.classification.title}.`);
 
     const events = await getEvents(context);
     log.info(JSON.stringify(events));
@@ -66,11 +68,11 @@ function parseDate(date, detail) {
         }
     }
 
-    if (!parsedDate.year) parsedDate.year = new Date().getFullYear();
-
     const monthIndex = 'JanFebMarAprMayJunJulAugSepOctNovDec'.indexOf(parsedDate.month) / 3;
+    if (!parsedDate.year && monthIndex !== -1) parsedDate.year = new Date().getFullYear();
+
     const { year, day, hours, minutes } = parsedDate;
-    if (monthIndex !== -1) parsedDate.dateObj = new Date(year, monthIndex, day, hours, minutes);
+    if (parsedDate.year) parsedDate.dateObj = new Date(year, monthIndex, day, hours, minutes);
 
     return parsedDate;
 }
@@ -79,14 +81,31 @@ function parseDateDetail(detail) {
     if (detail) {
         const fragments = detail.split(' ');
         if (fragments) {
+            const [dayName, time] = [fragments[0], fragments[2]];
+
             return {
-                dayName: fragments[0],
-                time: fragments[2],
-                hours: parseInt(fragments[2], 10),
-                minutes: parseInt(fragments[2].split(':')[1], 10),
+                dayName,
+                time,
+                hours: parseHours(time),
+                minutes: parseMinutes(time),
             };
         }
     }
 
     return {};
+}
+
+function parseHours(time) {
+    let hours;
+
+    if (time) {
+        const hoursNumber = parseInt(time, 10);
+        hours = time.includes('am') ? hoursNumber : hoursNumber + 12;
+    }
+
+    return hours;
+}
+
+function parseMinutes(time) {
+    return time ? parseInt(time.split(':')[1], 10) : undefined;
 }

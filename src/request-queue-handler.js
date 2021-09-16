@@ -15,7 +15,7 @@ export async function enqueueClassificationToScrape(requestQueue, categoryName, 
 
         // search filter
         sort: 'date%2Casc',
-        radius: 100,
+        radius: 300,
         unit: 'miles',
         daterange: 'all',
     };
