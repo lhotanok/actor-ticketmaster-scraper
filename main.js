@@ -2,7 +2,7 @@
 import Apify from 'apify';
 
 import { handleConcertsStartPage } from './src/concerts-start-page.js';
-import { handleGenrePage } from './src/genre-page.js';
+import { handleEventSearchPage } from './src/event-search-page.js';
 
 const { utils: { log } } = Apify;
 
@@ -51,8 +51,8 @@ async function handlePageFunction(context) {
     log.info('Page opened.', { label, url });
 
     switch (label) {
-        case 'GENRE':
-            return handleGenrePage(context);
+        case 'EVENT_SEARCH':
+            return handleEventSearchPage(context);
         default:
             return handleConcertsStartPage(context);
     }

@@ -1,33 +1,21 @@
 import Apify from 'apify';
 
 const { utils: { log } } = Apify;
-const { saveSnapshot } = Apify.utils.puppeteer;
 
 /**
  *
  * @param {Object} context
  * @param {Apify.Request} context.request
  */
-export async function handleGenrePage(context) {
+export async function handleEventSearchPage(context) {
     const { request } = context;
-    log.info(`Crawling concerts of genre category: ${request.userData.title}`);
-
-    if (context.page) {
-        log.info('Crawling with PuppeteerCrawler.');
-        await saveSnapshot(context.page, { key: `test-screen-${request.userData.id}` });
-    } else if (context.$) {
-        log.info('Crawling with CheerioCrawler.');
-    }
+    log.info(`Crawling events of category: ${request.userData.title}`);
 
     const events = await getEvents(context);
     log.info(JSON.stringify(events));
 }
 
 async function getEvents(context) {
-    if (context.$) return getEventsWithCheerio(context);
-}
-
-async function getEventsWithCheerio(context) {
     const { $ } = context;
 
     const headerSelector = '[data-tid=filtersPanel]+div .header';
@@ -54,7 +42,7 @@ async function getEventsWithCheerio(context) {
         events.push({
             title: titles[i],
             place: places[i],
-            date: { ...parseDate(dates[i]), ...parseTime(times[i]) },
+            date: parseDate(dates[i], times[i]),
         });
     }
 
@@ -65,8 +53,8 @@ function getInnerTexts($, selector) {
     return $(selector).toArray().map((el) => $(el).text());
 }
 
-function parseDate(date) {
-    const parsedDate = {};
+function parseDate(date, detail) {
+    const parsedDate = { ...parseDateDetail(detail) };
 
     if (date) {
         const fragments = date.split(' ');
@@ -80,18 +68,25 @@ function parseDate(date) {
 
     if (!parsedDate.year) parsedDate.year = new Date().getFullYear();
 
+    const monthIndex = 'JanFebMarAprMayJunJulAugSepOctNovDec'.indexOf(parsedDate.month) / 3;
+    const { year, day, hours, minutes } = parsedDate;
+    if (monthIndex !== -1) parsedDate.dateObj = new Date(year, monthIndex, day, hours, minutes);
+
     return parsedDate;
 }
 
-function parseTime(time) {
-    const parsedTime = {};
-
-    if (time) {
-        const fragments = time.split(' ');
+function parseDateDetail(detail) {
+    if (detail) {
+        const fragments = detail.split(' ');
         if (fragments) {
-            [parsedTime.dayName, parsedTime.time] = [fragments[0], fragments[2]];
+            return {
+                dayName: fragments[0],
+                time: fragments[2],
+                hours: parseInt(fragments[2], 10),
+                minutes: parseInt(fragments[2].split(':')[1], 10),
+            };
         }
     }
 
-    return parsedTime;
+    return {};
 }

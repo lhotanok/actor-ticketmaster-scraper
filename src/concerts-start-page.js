@@ -1,8 +1,10 @@
 import Apify from 'apify';
-import { URL, URLSearchParams } from 'url';
 
 // eslint-disable-next-line no-unused-vars
 import Puppeteer from 'puppeteer';
+
+// eslint-disable-next-line import/extensions
+import { enqueueClassificationToScrape } from './request-queue-handler.js';
 
 const { utils: { log } } = Apify;
 
@@ -86,32 +88,11 @@ async function getGenresWithCheerio($, selector) {
 
 /**
  *
- * @param {Array} genreIds
+ * @param {Array} genres
  * @param {Apify.RequestQueue} requestQueue
  */
 async function enqueueGenresToScrape(genres, requestQueue) {
     genres.forEach(async (genre) => {
-        const { id, title } = genre;
-        const url = new URL(`https://www.ticketmaster.com/discover/concerts?`);
-
-        // Ticketmaster API
-        const queryParams = {
-            classificationId: id,
-
-            // search filter
-            sort: 'date%2Casc',
-            radius: 100,
-            unit: 'miles',
-            daterange: 'all',
-        };
-
-        url.search = new URLSearchParams(queryParams);
-
-        const genreRequest = new Apify.Request({
-            url: url.toString(),
-            userData: { label: 'GENRE', id, title },
-        });
-
-        await requestQueue.addRequest(genreRequest);
+        enqueueClassificationToScrape(requestQueue, 'concerts', genre);
     });
 }
