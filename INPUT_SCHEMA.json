@@ -1,24 +1,453 @@
 {
-  "title": "Input schema for ticketmaster-scraper actor.",
+  "title": "Input schema for ticketmaster scraper actor.",
   "type": "object",
   "schemaVersion": 1,
   "properties": {
-    "startUrls": {
-      "title": "Start URLs",
-      "type": "array",
-      "description": "URLs to start with.",
-      "editor": "requestListSources",
-      "prefill": [
-        { "url": "https://www.ticketmaster.com/discover/concerts" }
-      ]
-    },
-    "genres": {
-      "title": "Genres",
-      "type": "array",
-      "description": "Genres to filter.",
-      "editor": "stringList",
-      "prefill": ["Rock", "Pop", "Metal"]
-    }
+      "concerts": {
+        "title": "Search Concerts",
+        "type": "boolean",
+        "description": "Specifies whether concert category should be scraped.",
+        "default": false
+      },
+      "sports": {
+        "title": "Search Sport Events",
+        "type": "boolean",
+        "description": "Specifies whether sport events category should be scraped.",
+        "default": false
+      },
+      "alternative": {
+        "title": "Alternative",
+        "description": "Alternative music",
+        "type": "boolean",
+        "default": false,
+        "sectionCaption": "Concert genres",
+        "sectionDescription": "Tick all genres you wish to scrape. If no genre is marked, all genres are included in the result."
+      },   
+      "balladsRomantic": {
+        "title": "Ballads/Romantic",
+        "description": "Ballads/Romantic music",
+        "type": "boolean",
+        "default": false
+      },
+      "blues": {
+        "title": "Blues",
+        "description": "Blues music",
+        "type": "boolean",
+        "default": false
+      },
+      "chansonFrancaise": {
+        "title": "Chanson Francaise",
+        "description": "Chanson Francaise music",
+        "type": "boolean",
+        "default": false
+      },
+      "childrensMusic": {
+        "title": "Children's Music",
+        "description": "Children's music",
+        "type": "boolean",
+        "default": false
+      },
+      "classical": {
+        "title": "Classical",
+        "description": "Classical music",
+        "type": "boolean",
+        "default": false
+      },
+      "country": {
+        "title": "Country",
+        "description": "Country music",
+        "type": "boolean",
+        "default": false
+      },
+      "danceElectronic": {
+        "title": "Dance/Electronic",
+        "description": "Dance/Electronic music",
+        "type": "boolean",
+        "default": false
+      },
+      "folk": {
+        "title": "Folk",
+        "description": "Folk music",
+        "type": "boolean",
+        "default": false
+      },
+      "hiphopRap": {
+        "title": "Hip-Hop/Rap",
+        "description": "Hip-Hop/Rap music",
+        "type": "boolean",
+        "default": false
+      },
+      "holiday": {
+        "title": "Holiday",
+        "description": "Holiday music",
+        "type": "boolean",
+        "default": false
+      },
+      "jazz": {
+        "title": "Jazz",
+        "description": "Jazz music",
+        "type": "boolean",
+        "default": false
+      },
+      "latin": {
+        "title": "Latin",
+        "description": "Latin music",
+        "type": "boolean",
+        "default": false
+      },
+      "medievalRenaissance": {
+        "title": "Medieval/Renaissance",
+        "description": "Medieval/Renaissance music",
+        "type": "boolean",
+        "default": false
+      },
+      "metal": {
+        "title": "Metal",
+        "description": "Metal music",
+        "type": "boolean",
+        "default": false
+      },
+      "newAge": {
+        "title": "New Age",
+        "description": "New Age music",
+        "type": "boolean",
+        "default": false
+      },
+      "other": {
+        "title": "Other",
+        "description": "Other music",
+        "type": "boolean",
+        "default": false
+      },
+      "pop": {
+        "title": "Pop",
+        "description": "Pop music",
+        "type": "boolean",
+        "default": false
+      },
+      "rAndB": {
+        "title": "R&B",
+        "description": "R&B music",
+        "type": "boolean",
+        "default": false
+      },
+      "reggae": {
+        "title": "Reggae",
+        "description": "Reggae music",
+        "type": "boolean",
+        "default": false
+      },
+      "religious": {
+        "title": "Religious",
+        "description": "Religious music",
+        "type": "boolean",
+        "default": false
+      },
+      "rock": {
+        "title": "Rock",
+        "description": "Rock music",
+        "type": "boolean",
+        "default": false
+      },
+      "world": {
+        "title": "World",
+        "description": "World music",
+        "type": "boolean",
+        "default": false
+      },
+
+
+
+      "tableTennis": {
+        "title": "Table Tennis",
+        "description": "Table Tennis events",
+        "type": "boolean",
+        "default": false,
+        "sectionCaption": "Sport disciplines",
+        "sectionDescription": "Tick all disciplines you wish to scrape. If no discipline is marked, all disciplines are included in the result."
+      },
+      "aquatics": {
+        "title": "Aquatics",
+        "description": "Aquatics events",
+        "type": "boolean",
+        "default": false
+      },
+      "athleticRaces": {
+        "title": "Athletic Races",
+        "description": "Athletic Races events",
+        "type": "boolean",
+        "default": false
+      },
+      "badminton": {
+        "title": "Badminton",
+        "description": "Badminton events",
+        "type": "boolean",
+        "default": false
+      },
+      "bandy": {
+        "title": "Bandy",
+        "description": "Bandy events",
+        "type": "boolean",
+        "default": false
+      },
+      "baseball": {
+        "title": "Baseball",
+        "description": "Baseball events",
+        "type": "boolean",
+        "default": false
+      },
+      "basketball": {
+        "title": "Basketball",
+        "description": "Basketball events",
+        "type": "boolean",
+        "default": false
+      },
+      "biathlon": {
+        "title": "Biathlon",
+        "description": "Biathlon events",
+        "type": "boolean",
+        "default": false
+      },
+      "bodyBuilding": {
+        "title": "Body Building",
+        "description": "Body Building events",
+        "type": "boolean",
+        "default": false
+      },
+      "boxing": {
+        "title": "Boxing",
+        "description": "Boxing events",
+        "type": "boolean",
+        "default": false
+      },
+      "cricket": {
+        "title": "Cricket",
+        "description": "Cricket events",
+        "type": "boolean",
+        "default": false
+      },
+      "curling": {
+        "title": "Curling",
+        "description": "Curling events",
+        "type": "boolean",
+        "default": false
+      },
+      "cycling": {
+        "title": "Cycling",
+        "description": "Cycling events",
+        "type": "boolean",
+        "default": false
+      },
+      "equestrian": {
+        "title": "Equestrian",
+        "description": "Equestrian events",
+        "type": "boolean",
+        "default": false
+      },
+      "esports": {
+        "title": "eSports",
+        "description": "eSports events",
+        "type": "boolean",
+        "default": false
+      },
+      "extreme": {
+        "title": "Extreme",
+        "description": "Extreme events",
+        "type": "boolean",
+        "default": false
+      },
+      "fieldHockey": {
+        "title": "Field Hockey",
+        "description": "Field Hockey events",
+        "type": "boolean",
+        "default": false
+      },
+      "fitness": {
+        "title": "Fitness",
+        "description": "Fitness events",
+        "type": "boolean",
+        "default": false
+      },
+      "floorball": {
+        "title": "Floorball",
+        "description": "Floorball events",
+        "type": "boolean",
+        "default": false
+      },
+      "football": {
+        "title": "Football",
+        "description": "Football events",
+        "type": "boolean",
+        "default": false
+      },
+      "golf": {
+        "title": "Golf",
+        "description": "Golf events",
+        "type": "boolean",
+        "default": false
+      },
+      "gymnastics": {
+        "title": "Gymnastics",
+        "description": "Gymnastics events",
+        "type": "boolean",
+        "default": false
+      },
+      "handball": {
+        "title": "Handball",
+        "description": "Handball events",
+        "type": "boolean",
+        "default": false
+      },
+      "hockey": {
+        "title": "Hockey",
+        "description": "Hockey events",
+        "type": "boolean",
+        "default": false
+      },
+      "iceSkating": {
+        "title": "Ice Skating",
+        "description": "Ice Skating events",
+        "type": "boolean",
+        "default": false
+      },
+      "indoorSoccer": {
+        "title": "Indoor Soccer",
+        "description": "Indoor Soccer events",
+        "type": "boolean",
+        "default": false
+      },
+      "lacrosse": {
+        "title": "Lacrosse",
+        "description": "Lacrosse events",
+        "type": "boolean",
+        "default": false
+      },
+      "martialArts": {
+        "title": "Martial Arts",
+        "description": "Martial Arts events",
+        "type": "boolean",
+        "default": false
+      },
+      "miscellaneous": {
+        "title": "Miscellaneous",
+        "description": "Miscellaneous events",
+        "type": "boolean",
+        "default": false
+      },
+      "motorsportsRacing": {
+        "title": "Motorsports/Racing",
+        "description": "Motorsports/Racing events",
+        "type": "boolean",
+        "default": false
+      },
+      "netball": {
+        "title": "Netball",
+        "description": "Netball events",
+        "type": "boolean",
+        "default": false
+      },
+      "rodeo": {
+        "title": "Rodeo",
+        "description": "Rodeo events",
+        "type": "boolean",
+        "default": false
+      },
+      "rollerDerby": {
+        "title": "Roller Derby",
+        "description": "Roller Derby events",
+        "type": "boolean",
+        "default": false
+      },
+      "rollerHockey": {
+        "title": "Roller Hockey",
+        "description": "Roller Hockey events",
+        "type": "boolean",
+        "default": false
+      },
+      "rugby": {
+        "title": "Rugby",
+        "description": "Rugby events",
+        "type": "boolean",
+        "default": false
+      },
+      "skiJumping": {
+        "title": "Ski Jumping",
+        "description": "Ski Jumping events",
+        "type": "boolean",
+        "default": false
+      },
+      "skiing": {
+        "title": "Skiing",
+        "description": "Skiing events",
+        "type": "boolean",
+        "default": false
+      },
+      "soccer": {
+        "title": "Soccer",
+        "description": "Soccer events",
+        "type": "boolean",
+        "default": false
+      },
+      "softball": {
+        "title": "Softball",
+        "description": "Softball events",
+        "type": "boolean",
+        "default": false
+      },
+      "squash": {
+        "title": "Squash",
+        "description": "Squash events",
+        "type": "boolean",
+        "default": false
+      },
+      "surfing": {
+        "title": "Surfing",
+        "description": "Surfing events",
+        "type": "boolean",
+        "default": false
+      },
+      "swimming": {
+        "title": "Swimming",
+        "description": "Swimming events",
+        "type": "boolean",
+        "default": false
+      },
+      "tennis": {
+        "title": "Tennis",
+        "description": "Tennis events",
+        "type": "boolean",
+        "default": false
+      },
+      "toros": {
+        "title": "Toros",
+        "description": "Toros events",
+        "type": "boolean",
+        "default": false
+      },
+      "trackAndField": {
+        "title": "Track & Field",
+        "description": "Track & Field events",
+        "type": "boolean",
+        "default": false
+      },
+      "volleyball": {
+        "title": "Volleyball",
+        "description": "Volleyball events",
+        "type": "boolean",
+        "default": false
+      },
+      "waterpolo": {
+        "title": "Waterpolo",
+        "description": "Waterpolo events",
+        "type": "boolean",
+        "default": false
+      },
+      "wrestling": {
+        "title": "Wrestling",
+        "description": "Wrestling events",
+        "type": "boolean",
+        "default": false
+      }
   },
   "required": []
 }
