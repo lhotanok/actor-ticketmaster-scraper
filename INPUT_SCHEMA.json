@@ -3,25 +3,43 @@
   "type": "object",
   "schemaVersion": 1,
   "properties": {
-      "concerts": {
+      "searchConcerts": {
         "title": "Search Concerts",
         "type": "boolean",
         "description": "Specifies whether concert category should be scraped.",
         "default": false
       },
-      "sports": {
+      "searchSports": {
         "title": "Search Sport Events",
         "type": "boolean",
         "description": "Specifies whether sport events category should be scraped.",
         "default": false
       },
+      "searchTheater": {
+        "title": "Search Arts & Theater Events",
+        "type": "boolean",
+        "description": "Specifies whether Arts & Theater events category should be scraped.",
+        "default": false
+      },
+      "searchFammily": {
+        "title": "Search Family Events",
+        "type": "boolean",
+        "description": "Specifies whether Family events category should be scraped.",
+        "default": false
+      },
+      "allMusicGenres": {
+        "title": "All Genres",
+        "description": "All genres music",
+        "type": "boolean",
+        "default": true,
+        "sectionCaption": "Select Concert Genres",
+        "sectionDescription": "Check all genres you wish to scrape. If you want to specify only certain genres, uncheck 'All Genres' first and then mark your chosen genres."
+      },
       "alternative": {
         "title": "Alternative",
         "description": "Alternative music",
         "type": "boolean",
-        "default": false,
-        "sectionCaption": "Concert genres",
-        "sectionDescription": "Tick all genres you wish to scrape. If no genre is marked, all genres are included in the result."
+        "default": false
       },   
       "balladsRomantic": {
         "title": "Ballads/Romantic",
@@ -41,13 +59,13 @@
         "type": "boolean",
         "default": false
       },
-      "childrensMusic": {
+      "childrensMusicTheater": {
         "title": "Children's Music",
         "description": "Children's music",
         "type": "boolean",
         "default": false
       },
-      "classical": {
+      "classicalMusic": {
         "title": "Classical",
         "description": "Classical music",
         "type": "boolean",
@@ -157,14 +175,19 @@
       },
 
 
-
+      "allSportDisciplines": {
+        "title": "All Disciplines",
+        "description": "All sport discipline events",
+        "type": "boolean",
+        "default": true,
+        "sectionCaption": "Select Sport Disciplines",
+        "sectionDescription": "Check all disciplines you wish to scrape. If you want to specify only certain disciplines, uncheck 'All Disciplines' first and then mark your chosen disciplines."
+      },
       "tableTennis": {
         "title": "Table Tennis",
         "description": "Table Tennis events",
         "type": "boolean",
-        "default": false,
-        "sectionCaption": "Sport disciplines",
-        "sectionDescription": "Tick all disciplines you wish to scrape. If no discipline is marked, all disciplines are included in the result."
+        "default": false
       },
       "aquatics": {
         "title": "Aquatics",
@@ -328,7 +351,7 @@
         "type": "boolean",
         "default": false
       },
-      "miscellaneous": {
+      "miscellaneousSport": {
         "title": "Miscellaneous",
         "description": "Miscellaneous events",
         "type": "boolean",
@@ -447,6 +470,275 @@
         "description": "Wrestling events",
         "type": "boolean",
         "default": false
+      },
+
+
+
+      "allTheaterGenres": {
+        "title": "All Genres",
+        "description": "All theater genres",
+        "type": "boolean",
+        "default": true,
+        "sectionCaption": "Select Arts & Theater Genres",
+        "sectionDescription": "Check all genres you wish to scrape. If you want to specify only certain genres, uncheck 'All Genres' first and then mark your chosen genres."
+      },
+      "childrensTheater": {
+        "title": "Children's Theater",
+        "description": "Children's Theater events",
+        "type": "boolean",
+        "default": false
+      },
+      "circusAndSpecialtyActs": {
+        "title": "Circus & Specialty Acts",
+        "description": "Circus & Specialty Acts events",
+        "type": "boolean",
+        "default": false
+      },
+      "classicalTheater": {
+        "title": "Classical",
+        "description": "Classical events",
+        "type": "boolean",
+        "default": false
+      },
+      "comedy": {
+        "title": "Comedy",
+        "description": "Comedy events",
+        "type": "boolean",
+        "default": false
+      },
+      "cultural": {
+        "title": "Cultural",
+        "description": "Cultural events",
+        "type": "boolean",
+        "default": false
+      },
+      "dance": {
+        "title": "Dance",
+        "description": "Dance events",
+        "type": "boolean",
+        "default": false
+      },
+      "espectaculo": {
+        "title": "Espectaculo",
+        "description": "Espectaculo events",
+        "type": "boolean",
+        "default": false
+      },
+      "fashion": {
+        "title": "Fashion",
+        "description": "Fashion events",
+        "type": "boolean",
+        "default": false
+      },
+      "fineArt": {
+        "title": "Fine Art",
+        "description": "Fine Art events",
+        "type": "boolean",
+        "default": false
+      },
+      "magicAndIllusion": {
+        "title": "Magic & Illusion",
+        "description": "Magic & Illusion events",
+        "type": "boolean",
+        "default": false
+      },
+      "miscellaneousTheater": {
+        "title": "Miscellaneous",
+        "description": "Miscellaneous events",
+        "type": "boolean",
+        "default": false
+      },
+      "multimedia": {
+        "title": "Multimedia",
+        "description": "Multimedia events",
+        "type": "boolean",
+        "default": false
+      },
+      "music": {
+        "title": "Music",
+        "description": "Music events",
+        "type": "boolean",
+        "default": false
+      },
+      "opera": {
+        "title": "Opera",
+        "description": "Opera events",
+        "type": "boolean",
+        "default": false
+      },
+      "performanceArt": {
+        "title": "Performance Art",
+        "description": "Performance Art events",
+        "type": "boolean",
+        "default": false
+      },
+      "puppetryTheater": {
+        "title": "Puppetry",
+        "description": "Puppetry events",
+        "type": "boolean",
+        "default": false
+      },
+      "spectacular": {
+        "title": "Spectacular",
+        "description": "Spectacular events",
+        "type": "boolean",
+        "default": false
+      },
+      "theatre": {
+        "title": "Theatre",
+        "description": "Theatre events",
+        "type": "boolean",
+        "default": false
+      },
+      "variety": {
+        "title": "Variety",
+        "description": "Variety events",
+        "type": "boolean",
+        "default": false
+      },
+
+
+
+      "allFamilyEvents": {
+        "title": "All Family Genres",
+        "description": "All family events",
+        "type": "boolean",
+        "default": true,
+        "sectionCaption": "Select Family Genres",
+        "sectionDescription": "Check all genres you wish to scrape. If you want to specify only certain genres, uncheck 'All Genres' first and then mark your chosen genres."
+      },
+      "puppetryFamily": {
+        "title": "Puppetry",
+        "description": "Puppetry events",
+        "type": "boolean",
+        "default": false
+      },
+      "iceShows": {
+        "title": "Ice Shows",
+        "description": "Ice Shows events",
+        "type": "boolean",
+        "default": false
+      },
+      "magicIllusion": {
+        "title": "Magic/Illusion",
+        "description": "Magic/Illusion events",
+        "type": "boolean",
+        "default": false
+      },
+      "circusSpecialtyActs": {
+        "title": "Circus/Specialty Acts",
+        "description": "Circus/Specialty Acts events",
+        "type": "boolean",
+        "default": false
+      },
+      "childrensTheaterFamily": {
+        "title": "Children's Theater",
+        "description": "Children's Theater events",
+        "type": "boolean",
+        "default": false
+      },
+      "rodeoFamily": {
+        "title": "Rodeo",
+        "description": "Rodeo events",
+        "type": "boolean",
+        "default": false
+      },
+      "fairsFestivals": {
+        "title": "Fairs/Festivals",
+        "description": "Fairs/Festivals events",
+        "type": "boolean",
+        "default": false
+      },
+      "latinChildrens": {
+        "title": "Latin Children's",
+        "description": "Latin Children's events",
+        "type": "boolean",
+        "default": false
+      },
+      "childrensMusicFamily": {
+        "title": "Children's Music",
+        "description": "Children's Music events",
+        "type": "boolean",
+        "default": false
+      },
+      "miscellaneousFamily": {
+        "title": "Miscellaneous/Family",
+        "description": "Miscellaneous/Family events",
+        "type": "boolean",
+        "default": false
+      },
+      "filmFamily": {
+        "title": "Film/Family",
+        "description": "Film/Family events",
+        "type": "boolean",
+        "default": false
+      },
+
+      "location": {
+        "title": "Location",
+        "description": "Enter keys in form of ISO Alpha-2 Country Codes. For values, add geoHash or leave blank if you don't want to specify the exact geographical point. You can look up the geoHash of your city or use various tools for conversion of longitude and latitude into geoHash (such as the one at this link: http://geohash.co). Use an arbitrary geoHash precision.",
+        "type": "array",
+        "editor": "keyValue",
+        "placeholderKey": "US",
+        "placeholderValue": "dr5regw3pg6ft",
+        "uniqueItems": true,
+        "sectionCaption": "Events Location",
+        "sectionDescription": "Specify countries, exact geographical points or combination of both."
+      },
+      "distance": {
+        "title": "Distance",
+        "description": "Distance radius from the given event location",
+        "type": "integer",
+        "unit": "miles",
+        "default": 100,
+        "minimum": 0,
+        "maximum": 5000
+      },
+      "allDates": {
+        "title": "All Dates",
+        "description": "Shows all events.",
+        "type": "boolean",
+        "default": true,
+        "sectionCaption": "Date filter",
+        "sectionDescription": "Specify date filter for scraped events. If you want to specify a date range, uncheck 'All Dates' option first and set your chosen option instead."
+      },
+      "thisWeekendDate": {
+        "title": "This Weekend",
+        "description": "Filter only those events that take place during this weekend.",
+        "type": "boolean",
+        "default": false
+      },
+      "dateRange": {
+        "title": "Date Range",
+        "description": "Filter only those events that take place during the given date range.",
+        "type": "object",
+        "editor": "json",
+        "prefill": {
+          "from": "2021-10-21",
+          "to": "2021-10-29"
+        },
+        "minProperties": 2,
+        "maxProperties": 2
+      },
+      "sort": {
+        "title": "Sort by",
+        "description": "Choose sort order for scraped events.",
+        "type": "string",
+        "editor": "select",
+        "enum": ["date", "relevance", "distance", "nameAsc", "nameDesc"],
+        "enumTitles": ["Date", "Most Popular", "Distance", "Names A-Z", "Names Z-A"],
+        "default": "date",
+        "sectionCaption": "Sort options",
+        "sectionDescription": "Specify sort order in which you want your events to be saved in the dataset."
+      },
+      "pages": {
+        "title": "Number of Pages",
+        "description": "Choose number of event search pages you want to scrape. There's normally 10 events on one page.",
+        "type": "integer",
+        "default": 1,
+        "minimum": 1,
+        "maximum": 5000,
+        "unit": "pages"
       }
   },
   "required": []
