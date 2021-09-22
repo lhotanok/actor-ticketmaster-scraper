@@ -4,28 +4,47 @@
   "schemaVersion": 1,
   "properties": {
       "searchConcerts": {
-        "title": "Search Concerts",
+        "title": "Concerts",
         "type": "boolean",
         "description": "Specifies whether concert category should be scraped.",
-        "default": false
+        "default": false,
+        "groupCaption": "Event Categories to Scrape",
+        "groupDescription": "Check all event categories you want to scrape. You can specify their corresponding sub-categories in the sections below."
       },
       "searchSports": {
-        "title": "Search Sport Events",
+        "title": "Sport Events",
         "type": "boolean",
         "description": "Specifies whether sport events category should be scraped.",
         "default": false
       },
       "searchTheater": {
-        "title": "Search Arts & Theater Events",
+        "title": "Arts & Theater Events",
         "type": "boolean",
         "description": "Specifies whether Arts & Theater events category should be scraped.",
         "default": false
       },
       "searchFammily": {
-        "title": "Search Family Events",
+        "title": "Family Events",
         "type": "boolean",
         "description": "Specifies whether Family events category should be scraped.",
         "default": false
+      },
+      "sort": {
+        "title": "Sort by",
+        "description": "Choose sort order for scraped events.",
+        "type": "string",
+        "editor": "select",
+        "enum": ["date", "relevance", "distance", "nameAsc", "nameDesc"],
+        "enumTitles": ["Date", "Most Popular", "Distance", "Names A-Z", "Names Z-A"],
+        "default": "date"
+      },
+      "maxItems": {
+        "title": "Max Items",
+        "description": "Choose maximum number of items you want to scrape and save to the result dataset.",
+        "type": "integer",
+        "default": 100,
+        "minimum": 1,
+        "unit": "items"
       },
       "allMusicGenres": {
         "title": "All Genres",
@@ -33,7 +52,9 @@
         "type": "boolean",
         "default": true,
         "sectionCaption": "Select Concert Genres",
-        "sectionDescription": "Check all genres you wish to scrape. If you want to specify only certain genres, uncheck 'All Genres' first and then mark your chosen genres."
+        "sectionDescription": "Check all genres you wish to scrape. If you want to specify only certain genres, uncheck 'All Genres' first and then mark your chosen genres.",
+        "groupCaption": "Music Genres to Scrape",
+        "groupDescription": "Check all genres you want to scrape. 'All Genres' option has the highest priority."
       },
       "alternative": {
         "title": "Alternative",
@@ -181,7 +202,9 @@
         "type": "boolean",
         "default": true,
         "sectionCaption": "Select Sport Disciplines",
-        "sectionDescription": "Check all disciplines you wish to scrape. If you want to specify only certain disciplines, uncheck 'All Disciplines' first and then mark your chosen disciplines."
+        "sectionDescription": "Check all disciplines you wish to scrape. If you want to specify only certain disciplines, uncheck 'All Disciplines' first and then mark your chosen disciplines.",
+        "groupCaption": "Sport Disciplines to Scrape",
+        "groupDescription": "Check all disciplines you want to scrape. 'All Disciplines' option has the highest priority."
       },
       "tableTennis": {
         "title": "Table Tennis",
@@ -480,7 +503,9 @@
         "type": "boolean",
         "default": true,
         "sectionCaption": "Select Arts & Theater Genres",
-        "sectionDescription": "Check all genres you wish to scrape. If you want to specify only certain genres, uncheck 'All Genres' first and then mark your chosen genres."
+        "sectionDescription": "Check all genres you wish to scrape. If you want to specify only certain genres, uncheck 'All Genres' first and then mark your chosen genres.",
+        "groupCaption": "Theater Genres to Scrape",
+        "groupDescription": "Check all genres you want to scrape. 'All Genres' option has the highest priority."
       },
       "childrensTheater": {
         "title": "Children's Theater",
@@ -600,12 +625,14 @@
 
 
       "allFamilyEvents": {
-        "title": "All Family Genres",
+        "title": "All Genres",
         "description": "All family events",
         "type": "boolean",
         "default": true,
         "sectionCaption": "Select Family Genres",
-        "sectionDescription": "Check all genres you wish to scrape. If you want to specify only certain genres, uncheck 'All Genres' first and then mark your chosen genres."
+        "sectionDescription": "Check all genres you wish to scrape. If you want to specify only certain genres, uncheck 'All Genres' first and then mark your chosen genres.",
+        "groupCaption": "Family Event Genres to Scrape",
+        "groupDescription": "Check all genres you want to scrape. 'All Genres' option has the highest priority."
       },
       "puppetryFamily": {
         "title": "Puppetry",
@@ -676,13 +703,13 @@
 
       "location": {
         "title": "Location",
-        "description": "Enter keys in form of ISO Alpha-2 Country Codes. For values, add geoHash or leave blank if you don't want to specify the exact geographical point. You can look up the geoHash of your city or use various tools for conversion of longitude and latitude into geoHash (such as the one at this link: http://geohash.co). Use an arbitrary geoHash precision.",
+        "description": "Enter keys in form of ISO Alpha-2 Country Codes. For values, add geoHash or leave blank if you don't want to specify the exact geographical point. You can look up the geoHash of your city or use various tools for conversion of longitude and latitude into geoHash (such as the one at this link: http://geohash.co). Use geoHash precision of at least 4 characters.",
         "type": "array",
         "editor": "keyValue",
         "placeholderKey": "US",
         "placeholderValue": "dr5regw3pg6ft",
         "uniqueItems": true,
-        "sectionCaption": "Events Location",
+        "sectionCaption": "Location Filter",
         "sectionDescription": "Specify countries, exact geographical points or combination of both."
       },
       "distance": {
@@ -710,35 +737,10 @@
       },
       "dateRange": {
         "title": "Date Range",
-        "description": "Filter only those events that take place during the given date range.",
-        "type": "object",
-        "editor": "json",
-        "prefill": {
-          "from": "2021-10-21",
-          "to": "2021-10-29"
-        },
-        "minProperties": 2,
-        "maxProperties": 2
-      },
-      "sort": {
-        "title": "Sort by",
-        "description": "Choose sort order for scraped events.",
+        "description": "Filter only those events that take place during the given date range. Specify dates in from-to order separated by comma.",
         "type": "string",
-        "editor": "select",
-        "enum": ["date", "relevance", "distance", "nameAsc", "nameDesc"],
-        "enumTitles": ["Date", "Most Popular", "Distance", "Names A-Z", "Names Z-A"],
-        "default": "date",
-        "sectionCaption": "Sort options",
-        "sectionDescription": "Specify sort order in which you want your events to be saved in the dataset."
-      },
-      "pages": {
-        "title": "Number of Pages",
-        "description": "Choose number of event search pages you want to scrape. There's normally 10 events on one page.",
-        "type": "integer",
-        "default": 1,
-        "minimum": 1,
-        "maximum": 5000,
-        "unit": "pages"
+        "editor": "textfield",
+        "prefill": "2021-10-21,2021-10-29"
       }
   },
   "required": []
