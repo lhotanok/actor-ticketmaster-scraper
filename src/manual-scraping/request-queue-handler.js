@@ -14,10 +14,11 @@ export async function enqueueClassificationToScrape(requestQueue, categoryName, 
         classificationId: classification.id,
 
         // search filter
-        sort: 'date%2Casc',
-        radius: 300,
+        sort: 'relevance%2Cdesc',
+        radius: 100,
         unit: 'miles',
         daterange: 'all',
+        countryCode: 'cs',
     };
 
     url.search = new URLSearchParams(queryParams);

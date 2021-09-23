@@ -5,6 +5,7 @@
 	"description": "This is a boilerplate of an Apify actor.",
 	"dependencies": {
 		"apify": "^2.0.0",
+		"ngeohash": "^0.6.3",
 		"puppeteer": "*"
 	},
 	"devDependencies": {
