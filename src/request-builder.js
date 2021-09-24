@@ -29,7 +29,7 @@ export function buildFetchRequest(input, classifications, page = 0, scrapedItems
 }
 
 function buildRequestVariables(input, classifications, page) {
-    const { sortBy, countryCode, geoHash, distance, allDates, thisWeekendDate, dateRange } = input;
+    const { sortBy, countryCode, geoHash, distance } = input;
 
     const { sort, asc } = getSortOptions(sortBy);
     const sortOrder = asc ? 'asc' : 'desc';
@@ -52,6 +52,8 @@ function buildRequestVariables(input, classifications, page) {
         includeTBD: 'yes',
     };
 
+    addDateVariable(variables, input);
+
     return variables;
 }
 
@@ -72,4 +74,54 @@ function getSortOptions(sortBy) {
     }
 
     return sortOptions;
+}
+
+function addDateVariable(variables, input) {
+    const { allDates, thisWeekendDate, dateFrom, dateTo } = input;
+
+    // if all dates are set, no filter needs to be specified
+    if (!allDates) {
+        if (thisWeekendDate) {
+            variables.localStartEndDateTime = getWeekendDatesString();
+        } else if (dateFrom && dateTo) {
+            variables.localStartEndDateTime = getDateRangeString(dateFrom, dateTo);
+        } else if (dateFrom) {
+            validateDateFormat(dateFrom);
+            variables.localStartDateTime = new Date(dateFrom);
+        } else if (dateTo) {
+            validateDateFormat(dateTo);
+            variables.localEndDateTime = new Date(dateTo);
+        }
+    }
+}
+
+function getWeekendDatesString() {
+    const date = new Date();
+
+    const saturday = date.getDate() - (date.getDay() - 1) + 5;
+    const sunday = date.getDate() - (date.getDay() - 1) + 6;
+
+    const saturdayDate = new Date(date.setDate(saturday));
+    const sundayDate = new Date(date.setDate(sunday));
+
+    saturdayDate.setHours(0, 0, 0, 0);
+    sundayDate.setHours(23, 59, 59);
+
+    return `${saturdayDate.toISOString()},${sundayDate.toISOString()}`;
+}
+
+function getDateRangeString(dateFrom, dateTo) {
+    validateDateFormat(dateFrom);
+    validateDateFormat(dateTo);
+
+    const from = new Date(dateFrom);
+    const to = new Date(dateTo);
+
+    return `${from.toISOString()},${to.toISOString()}`;
+}
+
+function validateDateFormat(dateFormat) {
+    if (!Date.parse(dateFormat)) {
+        throw new Error(`Invalid date format provided. Valid format is: YYYY-MM-DD. Format from input: ${dateFormat}.`);
+    }
 }
