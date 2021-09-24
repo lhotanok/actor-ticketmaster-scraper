@@ -52,9 +52,9 @@
     },
     "maxItems": {
       "title": "Max Items",
-      "description": "Choose maximum number of items you want to scrape and save to the result dataset. Note that 300 events can be scraped by sending 1 request so it might be a good idea to choose a multiple of 300 as max items value.",
+      "description": "Choose maximum number of items you want to scrape and save to the result dataset.",
       "type": "integer",
-      "prefill": 300,
+      "prefill": 100,
       "minimum": 1,
       "unit": "items"
     },
