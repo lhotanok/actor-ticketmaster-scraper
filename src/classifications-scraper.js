@@ -2,15 +2,15 @@ import Apify from 'apify';
 
 const { utils: { log } } = Apify;
 
-export async function getClassificationsToScrape(input, classifications) {
+export function getClassificationsToScrape(input, classifications) {
     const classificationIds = [];
 
     // Maps category names on property names representing 'all subcategories' options
     const categoriesAllEventsMap = {
         concerts: 'concertsAll',
         sports: 'sportsAll',
-        theater: 'arts-theaterAll',
         family: 'familyAll',
+        'arts-theater': 'arts-theaterAll',
     };
 
     Object.keys(categoriesAllEventsMap).forEach((key) => {
@@ -18,40 +18,50 @@ export async function getClassificationsToScrape(input, classifications) {
         if (scrapeCategory(input, key)) {
             log.info(`Category ${key} will be scraped.`);
 
-            const genreIds = classifications.filter((cls) => cls.category === key).map((categoryCls) => categoryCls.id.split('-')[0]);
-            const uniqueGenreIds = [...new Set(genreIds)];
+            const genreIds = Object.keys(classifications[key].genres);
+
+            log.info(`Genre Ids for ${key} category: ${JSON.stringify(genreIds, null, 2)}`);
 
             if (input[categoriesAllEventsMap[key]]) {
                 // All genres set, include them all in classificationIds
                 log.info(`All subcategories of ${key} will be scraped.`);
-                classificationIds.push(...uniqueGenreIds);
+                classificationIds.push(...genreIds);
             } else {
                 // Specific genres set, for each genre, check if this key in properties is set to 'true'
                 // and if so, include it in classificationIds
-                uniqueGenreIds.forEach((genreId) => {
-                    if (input[genreId]) {
-                        classificationIds.push(genreId);
-                    }
-                });
+                const inputClassifications = getClassificationsFromInput(input, genreIds);
+                log.info(`Subcategories of ${key} will be scraped:
+                ${JSON.stringify(inputClassifications, null, 2)}`);
+
+                classificationIds.push(...inputClassifications);
             }
         }
     });
 
-    return classificationIds;
-}
+    const uniqueClassificationIds = [...new Set(classificationIds)];
+    log.info(`Unique classification IDs to scrape: ${uniqueClassificationIds}`);
 
-async function getClassificationsByCallingGenreActor() {
-    const apifyClient = Apify.newClient({ token: process.env.APIFY_TOKEN });
-    const actorClient = apifyClient.actor('lhotanok~ticketmaster-genre-scraper');
-
-    log.info(`Calling lhotanok~ticketmaster-genre-scraper actor.`);
-    const run = await actorClient.call();
-    const runClient = apifyClient.run(run.id);
-
-    const { items } = await runClient.dataset().listItems();
-    return items;
+    return uniqueClassificationIds;
 }
 
 function scrapeCategory(input, category) {
     return input[category];
+}
+
+function getClassificationsFromInput(input, categoryGenreIds) {
+    const classificationIds = [];
+
+    const normalizedInput = {};
+    Object.keys(input).forEach((property) => {
+        const normalizedProperty = property.split('-')[0]; // handles classification IDs duplicates that include '-'
+        normalizedInput[normalizedProperty] = input[property];
+    });
+
+    categoryGenreIds.forEach((genreId) => {
+        if (normalizedInput[genreId]) {
+            classificationIds.push(genreId);
+        }
+    });
+
+    return classificationIds;
 }

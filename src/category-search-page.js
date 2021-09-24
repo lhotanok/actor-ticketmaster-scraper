@@ -2,35 +2,33 @@ import Apify from 'apify';
 
 const { utils: { log } } = Apify;
 
-export async function handleCategorySearchPage(context) {
+export async function handleCategorySearchPage(context, categories) {
     const { $, request: { url } } = context;
     const urlParts = url.split('/');
     const category = urlParts[urlParts.length - 1];
 
-    const categoryTitle = await getPageTitle(context);
+    const title = await getPageTitle(context);
 
     const genresFilterSelector = '[data-tid=filtersPanel] [data-tid=genresFilter]';
     const optionsSelector = '[role=listbox]>[role=option]';
 
     const selector = `${genresFilterSelector} ${optionsSelector}`;
 
-    const genres = {};
+    categories[category] = {
+        title,
+        url,
+        genres: {},
+    };
+
+    // skips first element which is 'All Genres' element
     $(selector).not(':first-child').each((_index, el) => {
         const genreId = $(el).attr('value');
         const genreName = $(el).text();
 
-        genres[genreId] = {
-            genreName,
-            category,
-            categoryTitle,
-            categoryUrl: url,
-        };
+        categories[category].genres[genreId] = { genreName };
     });
 
-    log.info(`Scraped genres for ${categoryTitle} category:
-    ${JSON.stringify(genres, null, 2)}`);
-
-    return genres;
+    log.info(`Scraped subcategories of ${category} category.`);
 }
 
 async function getPageTitle({ $ }) {

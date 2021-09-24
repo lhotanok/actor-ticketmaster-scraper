@@ -48,13 +48,13 @@
         "Names A-Z",
         "Names Z-A"
       ],
-      "default": "date"
+      "prefill": "date"
     },
     "maxItems": {
       "title": "Max Items",
-      "description": "Choose maximum number of items you want to scrape and save to the result dataset.",
+      "description": "Choose maximum number of items you want to scrape and save to the result dataset. Note that 300 events can be scraped by sending 1 request so it might be a good idea to choose a multiple of 300 as max items value.",
       "type": "integer",
-      "default": 100,
+      "prefill": 300,
       "minimum": 1,
       "unit": "items"
     },
@@ -354,6 +354,152 @@
       "type": "boolean",
       "default": false
     },
+    "concertsAll": {
+      "title": "All Genres",
+      "description": "All Genres concerts",
+      "type": "boolean",
+      "default": true,
+      "sectionCaption": "Select Concert Genres",
+      "sectionDescription": "Check all genres you wish to scrape. If you want to specify only certain genres, uncheck 'All Genres' first and then mark your chosen genres."
+    },
+    "KnvZfZ7vAvv": {
+      "title": "Alternative",
+      "description": "Alternative concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAve": {
+      "title": "Ballads/Romantic",
+      "description": "Ballads/Romantic concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAvd": {
+      "title": "Blues",
+      "description": "Blues concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAvA": {
+      "title": "Chanson Francaise",
+      "description": "Chanson Francaise concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAvk": {
+      "title": "Children's Music",
+      "description": "Children's Music concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAeJ": {
+      "title": "Classical",
+      "description": "Classical concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAv6": {
+      "title": "Country",
+      "description": "Country concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAvF": {
+      "title": "Dance/Electronic",
+      "description": "Dance/Electronic concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAva": {
+      "title": "Folk",
+      "description": "Folk concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAv1": {
+      "title": "Hip-Hop/Rap",
+      "description": "Hip-Hop/Rap concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAvJ": {
+      "title": "Holiday",
+      "description": "Holiday concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAvE": {
+      "title": "Jazz",
+      "description": "Jazz concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAJ6": {
+      "title": "Latin",
+      "description": "Latin concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAvI": {
+      "title": "Medieval/Renaissance",
+      "description": "Medieval/Renaissance concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAvt": {
+      "title": "Metal",
+      "description": "Metal concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAvn": {
+      "title": "New Age",
+      "description": "New Age concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAvl": {
+      "title": "Other",
+      "description": "Other concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAev": {
+      "title": "Pop",
+      "description": "Pop concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAee": {
+      "title": "R&B",
+      "description": "R&B concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAed": {
+      "title": "Reggae",
+      "description": "Reggae concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAe7": {
+      "title": "Religious",
+      "description": "Religious concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAeA": {
+      "title": "Rock",
+      "description": "Rock concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAeF": {
+      "title": "World",
+      "description": "World concerts events",
+      "type": "boolean",
+      "default": false
+    },
     "arts-theaterAll": {
       "title": "All Genres",
       "description": "All Genres arts-theater",
@@ -538,7 +684,7 @@
       "type": "boolean",
       "default": false
     },
-    "KnvZfZ7vAvk": {
+    "KnvZfZ7vAvk_family": {
       "title": "Children's Music",
       "description": "Children's Music family events",
       "type": "boolean",
@@ -556,153 +702,7 @@
       "type": "boolean",
       "default": false
     },
-    "concertsAll": {
-      "title": "All Genres",
-      "description": "All Genres concerts",
-      "type": "boolean",
-      "default": true,
-      "sectionCaption": "Select Concert Genres",
-      "sectionDescription": "Check all genres you wish to scrape. If you want to specify only certain genres, uncheck 'All Genres' first and then mark your chosen genres."
-    },
-    "KnvZfZ7vAvv": {
-      "title": "Alternative",
-      "description": "Alternative concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAve": {
-      "title": "Ballads/Romantic",
-      "description": "Ballads/Romantic concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAvd": {
-      "title": "Blues",
-      "description": "Blues concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAvA": {
-      "title": "Chanson Francaise",
-      "description": "Chanson Francaise concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAvk_concerts": {
-      "title": "Children's Music",
-      "description": "Children's Music concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAeJ": {
-      "title": "Classical",
-      "description": "Classical concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAv6": {
-      "title": "Country",
-      "description": "Country concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAvF": {
-      "title": "Dance/Electronic",
-      "description": "Dance/Electronic concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAva": {
-      "title": "Folk",
-      "description": "Folk concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAv1": {
-      "title": "Hip-Hop/Rap",
-      "description": "Hip-Hop/Rap concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAvJ": {
-      "title": "Holiday",
-      "description": "Holiday concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAvE": {
-      "title": "Jazz",
-      "description": "Jazz concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAJ6": {
-      "title": "Latin",
-      "description": "Latin concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAvI": {
-      "title": "Medieval/Renaissance",
-      "description": "Medieval/Renaissance concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAvt": {
-      "title": "Metal",
-      "description": "Metal concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAvn": {
-      "title": "New Age",
-      "description": "New Age concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAvl": {
-      "title": "Other",
-      "description": "Other concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAev": {
-      "title": "Pop",
-      "description": "Pop concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAee": {
-      "title": "R&B",
-      "description": "R&B concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAed": {
-      "title": "Reggae",
-      "description": "Reggae concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAe7": {
-      "title": "Religious",
-      "description": "Religious concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAeA": {
-      "title": "Rock",
-      "description": "Rock concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAeF": {
-      "title": "World",
-      "description": "World concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "country": {
+    "countryCode": {
       "title": "Country",
       "description": "Enter ISO Alpha-2 Country Code or leave blank and specify geoHash only.",
       "type": "string",
@@ -711,7 +711,7 @@
       "sectionCaption": "Location Filter",
       "sectionDescription": "Specify countries, exact geographical points or combination of both."
     },
-    "geohash": {
+    "geoHash": {
       "title": "GeoHash",
       "description": "Add geoHash or leave blank if you don't want to specify the exact geographical point. You can look up the geoHash of your city or use various tools for conversion of longitude and latitude into geoHash (such as the one at this link: http://geohash.co). Use geoHash precision of at least 4 characters.",
       "type": "string",
@@ -742,21 +742,21 @@
       "type": "boolean",
       "default": false
     },
-    "dateRange": {
-      "title": "Date Range",
-      "description": "Filter only those events that take place during the given date range. Specify 'from' and 'to' keys and the corresponding values in YYYY-MM-DD format.",
-      "type": "array",
-      "editor": "keyValue",
-      "prefill": [
-        {
-          "from": "2021-10-21"
-        },
-        {
-          "to": "2021-10-29"
-        }
-      ],
-      "minItems": 2,
-      "maxItems": 2
+    "dateFrom": {
+      "title": "From",
+      "description": "Filter only those events that take place from this date. Valid format is: YYYY-MM-DD.",
+      "type": "string",
+      "editor": "textfield",
+      "minLength": 8,
+      "maxLength": 10
+    },
+    "dateTo": {
+      "title": "To",
+      "description": "Filter only those events that take place before this date. Valid format is: YYYY-MM-DD.",
+      "type": "string",
+      "editor": "textfield",
+      "minLength": 8,
+      "maxLength": 10
     }
   }
 }
