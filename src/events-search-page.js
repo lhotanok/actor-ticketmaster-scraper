@@ -23,6 +23,7 @@ export async function handleEventsSearchPage(context, {
     const events = getEventsFromResponse(items);
 
     const remainingItemsCount = maxItems - scrapedItems;
+    log.info(`Remaining items: ${remainingItemsCount}, maxItems: ${maxItems}, Scraped items: ${scrapedItems}`);
     if (remainingItemsCount < events.length) {
         events.splice(remainingItemsCount);
     }
@@ -30,7 +31,8 @@ export async function handleEventsSearchPage(context, {
     await pushData(events);
 
     const totalScrapedItems = scrapedItems + events.length;
-    if (page.totalPages > userData.page && totalScrapedItems < maxItems) {
+    log.info(`Total pages: ${page.totalPages}, Current page: ${userData.page}`);
+    if (page.totalPages > userData.page + 1 && totalScrapedItems < maxItems) {
         const { crawler: { requestQueue } } = context;
         const nextRequest = buildFetchRequest({ sortBy, countryCode, geoHash, distance, allDates, thisWeekendDate, dateFrom, dateTo },
             classifications, userData.page + 1, totalScrapedItems);

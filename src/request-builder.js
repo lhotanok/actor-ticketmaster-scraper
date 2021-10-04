@@ -118,8 +118,8 @@ function getWeekendDatesString() {
     const saturdayDate = new Date(date.setDate(saturday));
     const sundayDate = new Date(date.setDate(sunday));
 
-    saturdayDate.setHours(0, 0, 0, 0);
-    sundayDate.setHours(23, 59, 59);
+    setDateFromHours(saturdayDate);
+    setDateToHours(sundayDate);
 
     return `${saturdayDate.toISOString()},${sundayDate.toISOString()}`;
 }
@@ -131,11 +131,26 @@ function getDateRangeString(dateFrom, dateTo) {
     const from = new Date(dateFrom);
     const to = new Date(dateTo);
 
-    return `${from.toISOString()},${to.toISOString()}`;
+    setDateFromHours(from);
+    setDateToHours(to);
+
+    return `${convertDateToISOFormat(from)},${convertDateToISOFormat(to)}`;
 }
 
 function validateDateFormat(dateFormat) {
     if (!Date.parse(dateFormat)) {
         throw new Error(`Invalid date format provided. Valid format is: YYYY-MM-DD. Format from input: ${dateFormat}.`);
     }
+}
+
+function setDateFromHours(date) {
+    date.setUTCHours(0, 0, 0);
+}
+
+function setDateToHours(date) {
+    date.setUTCHours(23, 59, 59);
+}
+
+function convertDateToISOFormat(date) {
+    return date.toISOString().split('.')[0];
 }
