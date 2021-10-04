@@ -23,7 +23,6 @@ export async function handleEventsSearchPage(context, {
     const events = getEventsFromResponse(items);
 
     const remainingItemsCount = maxItems - scrapedItems;
-    log.info(`Remaining items: ${remainingItemsCount}, maxItems: ${maxItems}, Scraped items: ${scrapedItems}`);
     if (remainingItemsCount < events.length) {
         events.splice(remainingItemsCount);
     }
@@ -31,7 +30,10 @@ export async function handleEventsSearchPage(context, {
     await pushData(events);
 
     const totalScrapedItems = scrapedItems + events.length;
-    log.info(`Total pages: ${page.totalPages}, Current page: ${userData.page}`);
+    log.info(`Total pages: ${page.totalPages}. Current page: ${userData.page}.`);
+    log.info(`Scraped events count: ${totalScrapedItems}`);
+
+    // there are more events to scrape
     if (page.totalPages > userData.page + 1 && totalScrapedItems < maxItems) {
         const { crawler: { requestQueue } } = context;
         const nextRequest = buildFetchRequest({ sortBy, countryCode, geoHash, distance, allDates, thisWeekendDate, dateFrom, dateTo },
@@ -53,18 +55,36 @@ function getEventsFromResponse(items) {
         const { datesFormatted: { dateTitle, dateSubTitle }, dates: { localDate, dateTBA, timeTBA } } = item;
 
         // location
-        const { location } = jsonLd;
+        const { location, offers, performer } = jsonLd;
         const { address: { streetAddress, addressLocality, addressRegion, postalCode, addressCountry } } = location;
+
         const placeUrl = location.sameAs;
+        const offerUrl = offers.url;
+        const { availabilityStarts, priceCurrency, price } = offers;
+        const offer = { offerUrl, availabilityStarts, price, priceCurrency };
+
+        const performers = extractPerformers(performer);
 
         const event = {
             ...{ id, url, name, description, segmentName, genreName },
             ...{ dateTitle, dateSubTitle, localDate, dateTBA, timeTBA },
             ...{ streetAddress, addressLocality, addressRegion, postalCode, addressCountry, placeUrl },
+            offer,
+            performers,
         };
 
         return event;
     });
 
     return events;
+}
+
+function extractPerformers(performer) {
+    const performers = performer.map((perf) => {
+        const { name } = perf;
+        const url = perf.sameAs;
+        return { name, url };
+    });
+
+    return performers;
 }

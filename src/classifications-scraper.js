@@ -20,8 +20,6 @@ export function getClassificationsToScrape(input, classifications) {
 
             const genreIds = Object.keys(classifications[key].genres);
 
-            log.info(`Genre Ids for ${key} category: ${JSON.stringify(genreIds, null, 2)}`);
-
             if (input[categoriesAllEventsMap[key]]) {
                 // All genres set, include them all in classificationIds
                 log.info(`All subcategories of ${key} will be scraped.`);
@@ -30,8 +28,6 @@ export function getClassificationsToScrape(input, classifications) {
                 // Specific genres set, for each genre, check if this key in properties is set to 'true'
                 // and if so, include it in classificationIds
                 const inputClassifications = getClassificationsFromInput(input, genreIds);
-                log.info(`Subcategories of ${key} will be scraped:
-                ${JSON.stringify(inputClassifications, null, 2)}`);
 
                 classificationIds.push(...inputClassifications);
             }
@@ -39,7 +35,7 @@ export function getClassificationsToScrape(input, classifications) {
     });
 
     const uniqueClassificationIds = [...new Set(classificationIds)];
-    log.info(`Unique classification IDs to scrape: ${uniqueClassificationIds}`);
+    log.info(`Classification IDs will be scraped: ${uniqueClassificationIds}`);
 
     return uniqueClassificationIds;
 }

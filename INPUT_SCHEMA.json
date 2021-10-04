@@ -48,13 +48,13 @@
         "Names A-Z",
         "Names Z-A"
       ],
-      "default": "date"
+      "prefill": "date"
     },
     "maxItems": {
       "title": "Max Items",
       "description": "Choose maximum number of items you want to scrape and save to the result dataset.",
       "type": "integer",
-      "default": 300,
+      "prefill": 300,
       "minimum": 1,
       "unit": "items"
     },
