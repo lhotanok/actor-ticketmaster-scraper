@@ -13,6 +13,13 @@ const CATEGORY_PAGE_PREFIX = 'https://www.ticketmaster.com/discover/';
 Apify.main(async () => {
     const input = await Apify.getInput();
 
+    const {
+        maxItems,
+        sortBy,
+        countryCode, geoHash, distance,
+        allDates, thisWeekendDate, dateFrom, dateTo,
+    } = input;
+
     let categoryState = await Apify.getValue('CATEGORY_STATE') || {};
     Apify.events.on('persistState', async () => Apify.setValue('CATEGORY_STATE', categoryState));
 
@@ -35,7 +42,7 @@ Apify.main(async () => {
         requestQueue,
         proxyConfiguration,
         handlePageFunction: async (context) => {
-            const scrapedCategories = scrapeCategories(context);
+            const scrapedCategories = await scrapeCategories(context);
             categoryState = { ...categoryState, ...scrapedCategories };
         },
     });
@@ -44,16 +51,28 @@ Apify.main(async () => {
     await categoriesCrawler.run();
     log.info('Categories crawl finished.');
 
+    // whole input object passed as parameter as it contains large amount of bool properties representing classification IDs
     const classifications = getClassificationsToScrape(input, categoryState);
-    const startRequest = buildFetchRequest(input, classifications);
-    requestQueue.addRequest(startRequest);
+
+    const startRequest = buildFetchRequest({ sortBy, countryCode, geoHash, distance, allDates, thisWeekendDate, dateFrom, dateTo },
+        classifications);
+
+    await requestQueue.addRequest(startRequest);
 
     const eventsCrawler = new Apify.CheerioCrawler({
         requestQueue,
         proxyConfiguration,
-        handlePageFunction: async (context) => {
-            return handleEventsSearchPage(context, input);
-        },
+        handlePageFunction: async (context) => handleEventsSearchPage(context, {
+            maxItems,
+            sortBy,
+            countryCode,
+            geoHash,
+            distance,
+            allDates,
+            thisWeekendDate,
+            dateFrom,
+            dateTo,
+        }),
     });
 
     log.info('Starting events crawl.');

@@ -51,7 +51,9 @@ function scrapeCategory(input, category) {
 function getClassificationsFromInput(input, categoryGenreIds) {
     const classificationIds = [];
 
+    // input with duplicate properties removed
     const normalizedInput = {};
+
     Object.keys(input).forEach((property) => {
         const normalizedProperty = property.split('-')[0]; // handles classification IDs duplicates that include '-'
         normalizedInput[normalizedProperty] = input[property];

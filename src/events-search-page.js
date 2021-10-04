@@ -5,11 +5,15 @@ import { buildFetchRequest } from './request-builder.js';
 
 const { utils: { log } } = Apify;
 
-export async function handleEventsSearchPage(context, input) {
+export async function handleEventsSearchPage(context, {
+    maxItems,
+    sortBy,
+    countryCode, geoHash, distance,
+    allDates, thisWeekendDate, dateFrom, dateTo,
+}) {
     const { request, json } = context;
     const { userData } = request;
     const { scrapedItems, classifications } = userData;
-    const { maxItems } = input;
 
     log.info(`Scraping url:
     ${request.url}`);
@@ -28,8 +32,10 @@ export async function handleEventsSearchPage(context, input) {
     const totalScrapedItems = scrapedItems + events.length;
     if (page.totalPages > userData.page && totalScrapedItems < maxItems) {
         const { crawler: { requestQueue } } = context;
-        const nextRequest = buildFetchRequest(input, classifications, userData.page + 1, totalScrapedItems);
-        requestQueue.addRequest(nextRequest);
+        const nextRequest = buildFetchRequest({ sortBy, countryCode, geoHash, distance, allDates, thisWeekendDate, dateFrom, dateTo },
+            classifications, userData.page + 1, totalScrapedItems);
+
+        await requestQueue.addRequest(nextRequest);
     }
 }
 

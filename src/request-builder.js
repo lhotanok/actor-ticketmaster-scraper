@@ -1,9 +1,23 @@
 import { URL, URLSearchParams } from 'url';
 
-export function buildFetchRequest(input, classifications, page = 0, scrapedItems = 0) {
+export function buildFetchRequest({
+    sortBy,
+    countryCode, geoHash, distance,
+    allDates, thisWeekendDate, dateFrom, dateTo,
+},
+classifications, page = 0, scrapedItems = 0) {
     const url = new URL(`https://www.ticketmaster.com/api/next/graphql?`);
 
-    const variables = buildRequestVariables(input, classifications, page);
+    const variables = buildRequestVariables({
+        sortBy,
+        countryCode,
+        geoHash,
+        distance,
+        allDates,
+        thisWeekendDate,
+        dateFrom,
+        dateTo,
+    }, classifications, page);
 
     const extensions = {
         persistedQuery: {
@@ -28,9 +42,11 @@ export function buildFetchRequest(input, classifications, page = 0, scrapedItems
     return request;
 }
 
-function buildRequestVariables(input, classifications, page) {
-    const { sortBy, countryCode, geoHash, distance } = input;
-
+function buildRequestVariables({
+    sortBy,
+    countryCode, geoHash, distance,
+    allDates, thisWeekendDate, dateFrom, dateTo,
+}, classifications, page) {
     const { sort, asc } = getSortOptions(sortBy);
     const sortOrder = asc ? 'asc' : 'desc';
 
@@ -52,13 +68,13 @@ function buildRequestVariables(input, classifications, page) {
         includeTBD: 'yes',
     };
 
-    addDateVariable(variables, input);
+    addDateVariable(variables, { allDates, thisWeekendDate, dateFrom, dateTo });
 
     return variables;
 }
 
 function getSortOptions(sortBy) {
-    const sortOptions = { sort: 'date', asc: true }; // sort by date by default
+    const sortOptions = { sort: 'date', asc: true }; // sort by date in asc order by default
 
     if (sortBy === 'date' || sortBy === 'relevance') {
         sortOptions.sort = sortBy;
@@ -76,9 +92,7 @@ function getSortOptions(sortBy) {
     return sortOptions;
 }
 
-function addDateVariable(variables, input) {
-    const { allDates, thisWeekendDate, dateFrom, dateTo } = input;
-
+function addDateVariable(variables, { allDates, thisWeekendDate, dateFrom, dateTo }) {
     // if all dates are set, no filter needs to be specified
     if (!allDates) {
         if (thisWeekendDate) {

@@ -29,7 +29,7 @@
       "description": "Specifies whether family events category should be scraped.",
       "default": false
     },
-    "sort": {
+    "sortBy": {
       "title": "Sort by",
       "description": "Choose sort order for scraped events.",
       "type": "string",
@@ -48,13 +48,13 @@
         "Names A-Z",
         "Names Z-A"
       ],
-      "prefill": "date"
+      "default": "date"
     },
     "maxItems": {
       "title": "Max Items",
       "description": "Choose maximum number of items you want to scrape and save to the result dataset.",
       "type": "integer",
-      "prefill": 100,
+      "default": 300,
       "minimum": 1,
       "unit": "items"
     },
@@ -758,5 +758,6 @@
       "minLength": 8,
       "maxLength": 10
     }
-  }
+  },
+  "required": [ "sortBy", "maxItems"]
 }
