@@ -1,28 +1,32 @@
 /* eslint-disable import/extensions */
 import Apify from 'apify';
 
-import { getClassificationsToScrape } from './src/classifications-scraper.js';
-import { handleCategorySearchPage } from './src/category-search-page.js';
-import { handleEventsSearchPage } from './src/events-search-page.js';
-import { buildFetchRequest } from './src/request-builder.js';
+import { getClassificationsToScrape } from './classifications-scraper.js';
+import { scrapeCategories } from './category-search-page.js';
+import { handleEventsSearchPage } from './events-search-page.js';
+import { buildFetchRequest } from './request-builder.js';
 
 const { utils: { log } } = Apify;
+
+const CATEGORY_PAGE_PREFIX = 'https://www.ticketmaster.com/discover/';
 
 Apify.main(async () => {
     const input = await Apify.getInput();
 
-    const categoryState = await Apify.getValue('CATEGORY_STATE') || {};
+    let categoryState = await Apify.getValue('CATEGORY_STATE') || {};
     Apify.events.on('persistState', async () => Apify.setValue('CATEGORY_STATE', categoryState));
 
-    const categoryPagePrefix = 'https://www.ticketmaster.com/discover/';
     const categories = ['concerts', 'sports', 'arts-theater', 'family'];
-    const categoryUrls = categories.map((category) => categoryPagePrefix + category);
+    const categoryUrls = categories.map((category) => CATEGORY_PAGE_PREFIX + category);
 
     const requestQueue = await Apify.openRequestQueue();
-    categoryUrls.forEach((categoryUrl) => {
-        requestQueue.addRequest({ url: categoryUrl });
-    });
 
+    for (const categoryUrl of categoryUrls) {
+        await requestQueue.addRequest({ url: categoryUrl });
+    }
+
+    // residential proxy is required due to Ticketmaster's strict blocking policy
+    // datacenter proxies get blocked by default
     const proxyConfiguration = await Apify.createProxyConfiguration({
         groups: ['RESIDENTIAL'],
     });
@@ -31,15 +35,8 @@ Apify.main(async () => {
         requestQueue,
         proxyConfiguration,
         handlePageFunction: async (context) => {
-            return handleCategorySearchPage(context, categoryState);
-        },
-    });
-
-    const eventsCrawler = new Apify.CheerioCrawler({
-        requestQueue,
-        proxyConfiguration,
-        handlePageFunction: async (context) => {
-            return handleEventsSearchPage(context, input);
+            const scrapedCategories = scrapeCategories(context);
+            categoryState = { ...categoryState, ...scrapedCategories };
         },
     });
 
@@ -48,9 +45,16 @@ Apify.main(async () => {
     log.info('Categories crawl finished.');
 
     const classifications = getClassificationsToScrape(input, categoryState);
-
     const startRequest = buildFetchRequest(input, classifications);
     requestQueue.addRequest(startRequest);
+
+    const eventsCrawler = new Apify.CheerioCrawler({
+        requestQueue,
+        proxyConfiguration,
+        handlePageFunction: async (context) => {
+            return handleEventsSearchPage(context, input);
+        },
+    });
 
     log.info('Starting events crawl.');
     await eventsCrawler.run();

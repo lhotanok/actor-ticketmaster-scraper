@@ -2,12 +2,14 @@ import Apify from 'apify';
 
 const { utils: { log } } = Apify;
 
-export async function handleCategorySearchPage(context, categories) {
+export async function scrapeCategories(context) {
+    const categories = {};
+
     const { $, request: { url } } = context;
     const urlParts = url.split('/');
     const category = urlParts[urlParts.length - 1];
 
-    const title = await getPageTitle(context);
+    const title = getPageTitle(context);
 
     const genresFilterSelector = '[data-tid=filtersPanel] [data-tid=genresFilter]';
     const optionsSelector = '[role=listbox]>[role=option]';
@@ -29,9 +31,11 @@ export async function handleCategorySearchPage(context, categories) {
     });
 
     log.info(`Scraped subcategories of ${category} category.`);
+
+    return categories;
 }
 
-async function getPageTitle({ $ }) {
+function getPageTitle({ $ }) {
     const parentElementSelector = '[data-tid=seoCategoryHeaderTag1]';
 
     return $(parentElementSelector).children().first().text();
