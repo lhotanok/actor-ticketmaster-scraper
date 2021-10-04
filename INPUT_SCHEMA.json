@@ -758,6 +758,5 @@
       "minLength": 8,
       "maxLength": 10
     }
-  },
-  "required": [ "sortBy", "maxItems"]
+  }
 }
