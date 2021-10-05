@@ -8,8 +8,6 @@
 - [Cost of usage](#costOfUsage)
 - [Number of results](#numberOfResults)
 - [Use Cases](#useCases)
-  - Case 1
-  - Case 2
 - [Input](#input)
 - [Output](#output)
 
@@ -35,7 +33,7 @@ And finally filter events in a specific date range. However, Ticketmaster offers
 
 Ticketmaster Scraper is a free of charge actor but it requires [Apify Proxy](https://apify.com/proxy) to work properly. More specifically, it needs the [residential proxy](https://apify.com/pricing/proxy) as Ticketmaster's blocking policy is strict and it blocks datacenter proxies by default. Apart from the residential IPs cost, [compute units](https://apify.com/pricing/actors) are charged for running the actor at the Apify platform.
 
-Ticketmaster Scraper is able to scrape 500 events per 1 request which keeps both compute units and residential proxy expenses very low.
+Ticketmaster Scraper is able to scrape 300 events per 1 request which keeps both compute units and residential proxy expenses very low.
 
 ### Residential proxies
 
@@ -53,7 +51,12 @@ Set the maximum number of scraped events using the `maxItems` input field.
 
 ## Use Cases <a name="useCases"></a>
 
+Ticketmaster is one of the leading companies in the field of event tickets purchasing. It comes with the nice search engine which helps you find the relevant events but it's missing a few features that can simplify the search process. Mainly the filtering of multiple categories and subcategories at once and also proper location specification. The events scraper can be useful e. g. in the following situations:
 
+- **Personal monitoring of relevant events** - handy search filters, no need to browse the [Ticketmaster.com](https://www.ticketmaster.com/) website
+- **Price analysis** - compare Ticketmaster's price offers to other ticket providers
+- **Ticket availability monitoring** - set notifications to remind you the time when the relevant tickets are put up for sale
+- **Events analysis by different criteria** (location, date range) - monitor which countries are missing the events of a specific category and fill this spot
 
 ## Input <a name="input"></a>
 
@@ -63,16 +66,16 @@ Ticketmaster Scraper offers various settings for customized event searching. Som
 
 First, check all event categories you want to scrape. Input categories are mapped on the categories at [Ticketmaster.com](https://www.ticketmaster.com/). You can choose from:
 
-- Concert Events
-- Sport Events
-- Arts & Theater Events
-- Family Events
+- **Concert** Events
+- **Sport** Events
+- **Arts & Theater** Events
+- **Family** Events
 
 **_NOTE:_**  Feel free to check multiple categories at once but keep in mind that Ticketmaster limits the maximum [number of results](#numberOfResults) it returns. So it might be a good idea to create a separate dataset for each category and only specify more subcategories. Or you could add more restrictive filter such as the exact location or date range.
 
 ### Subcategories
 
-The actor provides list of subcategories for each of the main categories. They represent different **disciplines** of Sport events and various **genres** of Concerts, Arts & Theater and Family events. `All D` field is checked by default so don't forget to uncheck it if you check the certain subcategories.
+The actor provides list of subcategories for each of the main categories. They represent different **disciplines** of Sport events and various **genres** of Concerts, Arts & Theater and Family events. `All Disciplines` or `All Genres` fields are checked by default so don't forget to uncheck them if you check the certain subcategories instead.
 
 ### Location
 
@@ -101,7 +104,7 @@ The actor stores all scraped events in a dataset where each event is a separate 
 - **offer** (url, start date for ticket purchase, price)
 - **performers** (list of performers with their name and url)
 
-### Example dataset item
+### Example dataset event item
 
 ```json
 {
