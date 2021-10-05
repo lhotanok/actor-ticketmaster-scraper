@@ -57,7 +57,7 @@ Set the maximum number of scraped events using the `maxItems` input field.
 
 <div id='useCases'/>
 
-## Use Cases <a name="useCases"></a>
+## Use Cases
 
 Ticketmaster is one of the leading companies in the field of event tickets purchasing. It comes with the nice search engine which helps you find the relevant events but it's missing a few features that can simplify the search process. Mainly the filtering of multiple categories and subcategories at once and also proper location specification. The events scraper can be useful e. g. in the following situations:
 
@@ -89,7 +89,7 @@ The actor provides list of subcategories for each of the main categories. They r
 
 ### Location
 
-Specify a desired `country` in the form of ISO Alpha-2 Country Code or an exact geographical point by filling the `geohash` value. Depending on your needs, you can use both of these fields or just one of them. Last but not least, set the `distance` radius in mile units.
+Specify a desired `country` in the form of [ISO Alpha-2 Country Code](https://www.iban.com/country-codes) or an exact geographical point by filling the `geohash` value. Depending on your needs, you can use both of these fields or just one of them. Last but not least, set the `distance` radius in mile units.
 
 ### Date
 
