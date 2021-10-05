@@ -123,7 +123,7 @@ function getWeekendDatesString() {
     setDateFromHours(saturdayDate);
     setDateToHours(sundayDate);
 
-    return `${saturdayDate.toISOString()},${sundayDate.toISOString()}`;
+    return `${convertDateToISOFormat(saturdayDate)},${convertDateToISOFormat(sundayDate)}`;
 }
 
 function getDateRangeString(dateFrom, dateTo) {
