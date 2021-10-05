@@ -12,7 +12,6 @@
   - Case 2
 - [Input](#input)
 - [Output](#output)
-- [Miscellaneous](#miscellaneous)
 
 <!-- toc end -->
 
@@ -44,13 +43,13 @@ You can use residential proxies if you subscribe to a paid [plan at the Apify pl
 
 ### Consumption units
 
-The actor is able to scrape approximately 15,000 events for 1 CU.
+The actor is able to scrape approximately **15,000 events for 1 CU**. However, you'll never consume the whole CU during 1 run due to Ticketmaster's max items limitation. When you scrape the maximum number of events per 1 run which is about 5000 items, it should cost about 1/3 CU.
 
 ## Number of results<a name="numberOfResults"></a>
 
 Set the maximum number of scraped events using the `maxItems` input field. 
 
-**_NOTE:_**  Ticketmaster limits searched results to 5100 (17 pages with 300 items per 1 page). If you need to scrape more events, you'll have to create multiple more specific input configurations that give you fewer search results and then combine the results together.
+**_NOTE:_**  Ticketmaster limits searched results to 5100 with 300 items per 1 page (17 pages). If you need to scrape more events, you'll have to create multiple more specific input configurations that give you fewer search results and then combine the results together.
 
 ## Use Cases <a name="useCases"></a>
 
@@ -60,9 +59,82 @@ Set the maximum number of scraped events using the `maxItems` input field.
 
 Ticketmaster Scraper offers various settings for customized event searching. Some of them follow the standard [Ticketmaster.com](https://www.ticketmaster.com/) API, others are designed to extend the existing API by new features.
 
-### Extra features
+### Categories
 
+First, check all event categories you want to scrape. Input categories are mapped on the categories at [Ticketmaster.com](https://www.ticketmaster.com/). You can choose from:
 
+- Concert Events
+- Sport Events
+- Arts & Theater Events
+- Family Events
+
+**_NOTE:_**  Feel free to check multiple categories at once but keep in mind that Ticketmaster limits the maximum [number of results](#numberOfResults) it returns. So it might be a good idea to create a separate dataset for each category and only specify more subcategories. Or you could add more restrictive filter such as the exact location or date range.
+
+### Subcategories
+
+The actor provides list of subcategories for each of the main categories. They represent different **disciplines** of Sport events and various **genres** of Concerts, Arts & Theater and Family events. `All D` field is checked by default so don't forget to uncheck it if you check the certain subcategories.
+
+### Location
+
+Specify a desired **country** in the form of ISO Alpha-2 Country Code or an exact geographical point by filling the **geohash** value. Depending on your needs, you can use both of these fields or just one of them. Last but not least, set the **distance** radius in mile units.
+
+### Date
+
+No date restrictions are set by default so **All Dates** field is checked. You may uncheck it and check **This Weekend** field instead or specify the date range. While setting the date range, you don't have to fill both **From** and **To** fields. If it suits you, fill one of them only. Inside the date section, **TBA** and **TBD** events filter is also handled. By choosing the appropriate value, you can exclude the events whose date is to be announced (TBA) or to be defined (TBD). Or you can go the other way round and include TBA and TBD events only. 
+
+### Other
+
+Apart from the previously mentioned fields, Ticketmaster Scraper also provides **Max Items** settings to limit the size of the result dataset. And to keep dataset processing simplified, it's able to sort the items by their date, relevance, distance or name.
 
 ## Output <a name="output"></a>
+
+The actor stores all scraped events in a dataset where each event is a separate item in the dataset. You can get the following information for each event:
+
+- **id**
+- **url**
+- **name**
+- **description**
+- **segment name** (category)
+- **genre name**
+- **date** (title, subtitle)
+- **location** (address, postal code, place url)
+- **offer** (url, start date for ticket purchase, price)
+- **performers** (list of performers with their name and url)
+
+### Example dataset item
+
+```json
+{
+  "id": "vvG1YZpdLJK6fm",
+  "url": "https://www.ticketmaster.com/mickey-gilley-and-johnny-lee-thackerville-oklahoma-10-25-2020/event/0C005837E64C752E",
+  "name": "Mickey Gilley and Johnny Lee",
+  "description": "Mickey Gilley and Johnny Lee | Sun 10/25 @ 3:00pm | Global Event Center at WinStar World Casino and Resort, Thackerville, OK",
+  "segmentName": "Music",
+  "genreName": "Country",
+  "dateTitle": "Oct 25",
+  "dateSubTitle": "Sun 3:00pm",
+  "streetAddress": "777 Casino Avenue",
+  "addressLocality": "Thackerville",
+  "addressRegion": "OK",
+  "postalCode": "73459",
+  "addressCountry": "US",
+  "placeUrl": "https://www.ticketmaster.com/global-event-center-at-winstar-world-casino-and-resort-tickets-thackerville/venue/99186",
+  "offer": {
+    "offerUrl": "https://www.ticketmaster.com/mickey-gilley-and-johnny-lee-thackerville-oklahoma-10-25-2020/event/0C005837E64C752E",
+    "availabilityStarts": "",
+    "price": "35",
+    "priceCurrency": "USD"
+  },
+  "performers": [
+    {
+      "name": "Mickey Gilley",
+      "url": "https://www.ticketmaster.com/mickey-gilley-tickets/artist/732778"
+    },
+    {
+      "name": "Johnny Lee",
+      "url": "https://www.ticketmaster.com/johnny-lee-tickets/artist/732830"
+    }
+  ]
+}
+```
 
