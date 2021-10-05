@@ -58,6 +58,152 @@
       "minimum": 1,
       "unit": "items"
     },
+    "concertsAll": {
+      "title": "All Genres",
+      "description": "All Genres concerts",
+      "type": "boolean",
+      "default": true,
+      "sectionCaption": "Select Concert Genres",
+      "sectionDescription": "Check all genres you wish to scrape. If you want to specify only certain genres, uncheck 'All Genres' first and then mark your chosen genres."
+    },
+    "KnvZfZ7vAvv": {
+      "title": "Alternative",
+      "description": "Alternative concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAve": {
+      "title": "Ballads/Romantic",
+      "description": "Ballads/Romantic concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAvd": {
+      "title": "Blues",
+      "description": "Blues concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAvA": {
+      "title": "Chanson Francaise",
+      "description": "Chanson Francaise concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAvk": {
+      "title": "Children's Music",
+      "description": "Children's Music concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAeJ": {
+      "title": "Classical",
+      "description": "Classical concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAv6": {
+      "title": "Country",
+      "description": "Country concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAvF": {
+      "title": "Dance/Electronic",
+      "description": "Dance/Electronic concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAva": {
+      "title": "Folk",
+      "description": "Folk concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAv1": {
+      "title": "Hip-Hop/Rap",
+      "description": "Hip-Hop/Rap concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAvJ": {
+      "title": "Holiday",
+      "description": "Holiday concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAvE": {
+      "title": "Jazz",
+      "description": "Jazz concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAJ6": {
+      "title": "Latin",
+      "description": "Latin concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAvI": {
+      "title": "Medieval/Renaissance",
+      "description": "Medieval/Renaissance concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAvt": {
+      "title": "Metal",
+      "description": "Metal concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAvn": {
+      "title": "New Age",
+      "description": "New Age concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAvl": {
+      "title": "Other",
+      "description": "Other concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAev": {
+      "title": "Pop",
+      "description": "Pop concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAee": {
+      "title": "R&B",
+      "description": "R&B concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAed": {
+      "title": "Reggae",
+      "description": "Reggae concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAe7": {
+      "title": "Religious",
+      "description": "Religious concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAeA": {
+      "title": "Rock",
+      "description": "Rock concerts events",
+      "type": "boolean",
+      "default": false
+    },
+    "KnvZfZ7vAeF": {
+      "title": "World",
+      "description": "World concerts events",
+      "type": "boolean",
+      "default": false
+    },
     "sportsAll": {
       "title": "All Disciplines",
       "description": "All Disciplines sports",
@@ -354,152 +500,6 @@
       "type": "boolean",
       "default": false
     },
-    "concertsAll": {
-      "title": "All Genres",
-      "description": "All Genres concerts",
-      "type": "boolean",
-      "default": true,
-      "sectionCaption": "Select Concert Genres",
-      "sectionDescription": "Check all genres you wish to scrape. If you want to specify only certain genres, uncheck 'All Genres' first and then mark your chosen genres."
-    },
-    "KnvZfZ7vAvv": {
-      "title": "Alternative",
-      "description": "Alternative concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAve": {
-      "title": "Ballads/Romantic",
-      "description": "Ballads/Romantic concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAvd": {
-      "title": "Blues",
-      "description": "Blues concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAvA": {
-      "title": "Chanson Francaise",
-      "description": "Chanson Francaise concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAvk": {
-      "title": "Children's Music",
-      "description": "Children's Music concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAeJ": {
-      "title": "Classical",
-      "description": "Classical concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAv6": {
-      "title": "Country",
-      "description": "Country concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAvF": {
-      "title": "Dance/Electronic",
-      "description": "Dance/Electronic concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAva": {
-      "title": "Folk",
-      "description": "Folk concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAv1": {
-      "title": "Hip-Hop/Rap",
-      "description": "Hip-Hop/Rap concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAvJ": {
-      "title": "Holiday",
-      "description": "Holiday concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAvE": {
-      "title": "Jazz",
-      "description": "Jazz concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAJ6": {
-      "title": "Latin",
-      "description": "Latin concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAvI": {
-      "title": "Medieval/Renaissance",
-      "description": "Medieval/Renaissance concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAvt": {
-      "title": "Metal",
-      "description": "Metal concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAvn": {
-      "title": "New Age",
-      "description": "New Age concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAvl": {
-      "title": "Other",
-      "description": "Other concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAev": {
-      "title": "Pop",
-      "description": "Pop concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAee": {
-      "title": "R&B",
-      "description": "R&B concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAed": {
-      "title": "Reggae",
-      "description": "Reggae concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAe7": {
-      "title": "Religious",
-      "description": "Religious concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAeA": {
-      "title": "Rock",
-      "description": "Rock concerts events",
-      "type": "boolean",
-      "default": false
-    },
-    "KnvZfZ7vAeF": {
-      "title": "World",
-      "description": "World concerts events",
-      "type": "boolean",
-      "default": false
-    },
     "arts-theaterAll": {
       "title": "All Genres",
       "description": "All Genres arts-theater",
@@ -757,6 +757,40 @@
       "editor": "textfield",
       "minLength": 8,
       "maxLength": 10
+    },
+    "includeTBA": {
+      "title": "TBA Events",
+      "description": "Represents events with date to be anounced.",
+      "type": "string",
+      "editor": "select",
+      "enum": [
+        "yes",
+        "no",
+        "only"
+      ],
+      "enumTitles": [
+        "Yes",
+        "No",
+        "Only"
+      ],
+      "prefill": "yes"
+    },
+    "includeTBD": {
+      "title": "TBD Events",
+      "description": "Represents events with date to be defined.",
+      "type": "string",
+      "editor": "select",
+      "enum": [
+        "yes",
+        "no",
+        "only"
+      ],
+      "enumTitles": [
+        "Yes",
+        "No",
+        "Only"
+      ],
+      "prefill": "yes"
     }
   }
 }
