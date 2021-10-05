@@ -5,9 +5,9 @@
 <!-- toc start -->
 
 - [Introduction](#introduction)
-- [Cost of usage](#costOfUsage)
-- [Number of results](#numberOfResults)
-- [Use Cases](#useCases)
+- [Cost of usage](#cost)
+- [Number of results](#results)
+- [Use Cases](#usecases)
 - [Input](#input)
 - [Output](#output)
 
@@ -31,7 +31,7 @@ To provide compatibility with Ticketmaster's built-in search engine, Ticketmaste
 
 And finally filter events in a specific date range. However, Ticketmaster offers many events with no date announced or defined yet. In such case, the shortcuts TBA or TBD are used respectively. TBA and TBD events are included in the dataset by default. You can exclude them by setting TBA Events and TBD Events to `No`. Or you can even create a dataset of TBA and TBD events only.
 
-<div id='costOfUsage'/>
+<div id='cost'/>
 
 ## Cost of usage
 
@@ -47,7 +47,7 @@ You can use residential proxies if you subscribe to a paid [plan at the Apify pl
 
 The actor is able to scrape approximately **15,000 events for 1 CU**. However, you'll never consume the whole CU during 1 run due to Ticketmaster's max items limitation. When you scrape the maximum number of events per 1 run which is about 5000 items, it should cost about 1/3 CU.
 
-<div id='numberOfResults'/>
+<div id='results'/>
 
 ## Number of results
 
@@ -55,7 +55,7 @@ Set the maximum number of scraped events using the `maxItems` input field.
 
 **_NOTE:_**  Ticketmaster limits searched results to 5100 with 300 items per 1 page (17 pages). If you need to scrape more events, you'll have to create multiple more specific input configurations that give you fewer search results and then combine the results together.
 
-<div id='useCases'/>
+<div id='usecases'/>
 
 ## Use Cases
 
