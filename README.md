@@ -89,15 +89,15 @@ The actor provides list of subcategories for each of the main categories. They r
 
 ### Location
 
-Specify a desired **country** in the form of ISO Alpha-2 Country Code or an exact geographical point by filling the **geohash** value. Depending on your needs, you can use both of these fields or just one of them. Last but not least, set the **distance** radius in mile units.
+Specify a desired `country` in the form of ISO Alpha-2 Country Code or an exact geographical point by filling the `geohash` value. Depending on your needs, you can use both of these fields or just one of them. Last but not least, set the `distance` radius in mile units.
 
 ### Date
 
-No date restrictions are set by default so **All Dates** field is checked. You may uncheck it and check **This Weekend** field instead or specify the date range. While setting the date range, you don't have to fill both **From** and **To** fields. If it suits you, fill one of them only. Inside the date section, **TBA** and **TBD** events filter is also handled. By choosing the appropriate value, you can exclude the events whose date is to be announced (TBA) or to be defined (TBD). Or you can go the other way round and include TBA and TBD events only. 
+No date restrictions are set by default so `All Dates` field is checked. You may uncheck it and check `This Weekend` field instead or specify the date range. While setting the date range, you don't have to fill both `From` and `To` fields. If it suits you, fill one of them only. Inside the date section, `TBA` and `TBD` events filter is also handled. By choosing the appropriate value, you can exclude the events whose date is to be announced (TBA) or to be defined (TBD). Or you can go the other way round and include TBA and TBD events only. 
 
 ### Other
 
-Apart from the previously mentioned fields, Ticketmaster Scraper also provides **Max Items** settings to limit the size of the result dataset. And to keep dataset processing simplified, it's able to sort the items by their date, relevance, distance or name.
+Apart from the previously mentioned fields, Ticketmaster Scraper also provides `Max Items` settings to limit the size of the result dataset. And to keep dataset processing simplified, it's able to sort the items by their date, relevance, distance or name.
 
 <div id='output'/>
 
