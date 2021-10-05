@@ -6,6 +6,7 @@
 
 - [Introduction](#introduction)
 - [Cost of usage](#costOfUsage)
+- [Number of results](#numberOfResults)
 - [Use Cases](#useCases)
   - Case 1
   - Case 2
@@ -33,19 +34,35 @@ And finally filter events in a specific date range. However, Ticketmaster offers
 
 ## Cost of usage<a name="costOfUsage"></a>
 
-Ticketmaster Scraper is a free of charge actor but it requires [Apify Proxy](https://apify.com/proxy) to work properly. More specifically, it needs the **residential proxy** as Ticketmaster's blocking policy is strict and it blocks datacenter proxies by default.
+Ticketmaster Scraper is a free of charge actor but it requires [Apify Proxy](https://apify.com/proxy) to work properly. More specifically, it needs the [residential proxy](https://apify.com/pricing/proxy) as Ticketmaster's blocking policy is strict and it blocks datacenter proxies by default. Apart from the residential IPs cost, [compute units](https://apify.com/pricing/actors) are charged for running the actor at the Apify platform.
 
-**_NOTE:_**  Residential IPs are charged based on the transferred data so optimize the maximum number of events scraped with respect to [residential proxy pricing](https://apify.com/proxy?pricing=residential-ip#pricing). 
+Ticketmaster Scraper is able to scrape 500 events per 1 request which keeps both compute units and residential proxy expenses very low.
 
-Ticketmaster Scraper is able to scrape 500 events per 1 request which keeps the residential proxy expenses very low.
+### Residential proxies
+
+You can use residential proxies if you subscribe to a paid [plan at the Apify platform](https://apify.com/pricing). Residential IPs are charged based on the transferred data so try to optimize the maximum number of events scraped with respect to [residential proxy pricing](https://apify.com/proxy?pricing=residential-ip#pricing). These proxies are only available to be run within actors on the Apify platform, not externally. If you're interested in using residential proxies for this scraper, contact `support@apify.com` via email or in-app chat to get the proxies enabled.
 
 ### Consumption units
 
-Actor is able to scrape approximately 13,000 events for 1 CU.
+The actor is able to scrape approximately 15,000 events for 1 CU.
+
+## Number of results<a name="numberOfResults"></a>
+
+Set the maximum number of scraped events using the `maxItems` input field. 
+
+**_NOTE:_**  Ticketmaster limits searched results to 5100 (17 pages with 300 items per 1 page). If you need to scrape more events, you'll have to create multiple more specific input configurations that give you fewer search results and then combine the results together.
 
 ## Use Cases <a name="useCases"></a>
 
+
+
 ## Input <a name="input"></a>
+
+Ticketmaster Scraper offers various settings for customized event searching. Some of them follow the standard [Ticketmaster.com](https://www.ticketmaster.com/) API, others are designed to extend the existing API by new features.
+
+### Extra features
+
+
 
 ## Output <a name="output"></a>
 
