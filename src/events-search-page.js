@@ -15,7 +15,7 @@ export async function handleEventsSearchPage(context, {
     const { userData } = request;
     const { scrapedItems, classifications } = userData;
 
-    log.info(`Scraping url:
+    log.debug(`Scraping url:
     ${request.url}`);
 
     const { data: { products: { page, items } } } = json;
@@ -30,7 +30,9 @@ export async function handleEventsSearchPage(context, {
     await pushData(events);
 
     const totalScrapedItems = scrapedItems + events.length;
-    log.info(`Total pages: ${page.totalPages}. Current page: ${userData.page}.`);
+    log.info(`Total results: ${page.totalElements}`);
+    log.info(`Total pages: ${page.totalPages}`);
+    log.info(`Current page: ${userData.page}`);
     log.info(`Scraped events count: ${totalScrapedItems}`);
 
     // there are more events to scrape
