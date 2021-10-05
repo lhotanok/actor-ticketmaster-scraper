@@ -17,7 +17,7 @@ Apify.main(async () => {
         maxItems,
         sortBy,
         countryCode, geoHash, distance,
-        allDates, thisWeekendDate, dateFrom, dateTo,
+        allDates, thisWeekendDate, dateFrom, dateTo, includeTBA, includeTBD,
     } = input;
 
     let categoryState = await Apify.getValue('CATEGORY_STATE') || {};
@@ -54,8 +54,18 @@ Apify.main(async () => {
     // whole input object passed as parameter as it contains large amount of bool properties representing classification IDs
     const classifications = getClassificationsToScrape(input, categoryState);
 
-    const startRequest = buildFetchRequest({ sortBy, countryCode, geoHash, distance, allDates, thisWeekendDate, dateFrom, dateTo },
-        classifications);
+    const startRequest = buildFetchRequest({
+        sortBy,
+        countryCode,
+        geoHash,
+        distance,
+        allDates,
+        thisWeekendDate,
+        dateFrom,
+        dateTo,
+        includeTBA,
+        includeTBD,
+    }, classifications);
 
     await requestQueue.addRequest(startRequest);
 
@@ -72,6 +82,8 @@ Apify.main(async () => {
             thisWeekendDate,
             dateFrom,
             dateTo,
+            includeTBA,
+            includeTBD,
         }),
     });
 

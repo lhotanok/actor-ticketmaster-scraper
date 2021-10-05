@@ -9,7 +9,7 @@ export async function handleEventsSearchPage(context, {
     maxItems,
     sortBy,
     countryCode, geoHash, distance,
-    allDates, thisWeekendDate, dateFrom, dateTo,
+    allDates, thisWeekendDate, dateFrom, dateTo, includeTBA, includeTBD,
 }) {
     const { request, json } = context;
     const { userData } = request;
@@ -36,8 +36,18 @@ export async function handleEventsSearchPage(context, {
     // there are more events to scrape
     if (page.totalPages > userData.page + 1 && totalScrapedItems < maxItems) {
         const { crawler: { requestQueue } } = context;
-        const nextRequest = buildFetchRequest({ sortBy, countryCode, geoHash, distance, allDates, thisWeekendDate, dateFrom, dateTo },
-            classifications, userData.page + 1, totalScrapedItems);
+        const nextRequest = buildFetchRequest({
+            sortBy,
+            countryCode,
+            geoHash,
+            distance,
+            allDates,
+            thisWeekendDate,
+            dateFrom,
+            dateTo,
+            includeTBA,
+            includeTBD,
+        }, classifications, userData.page + 1, totalScrapedItems);
 
         await requestQueue.addRequest(nextRequest);
     }

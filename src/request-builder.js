@@ -3,7 +3,7 @@ import { URL, URLSearchParams } from 'url';
 export function buildFetchRequest({
     sortBy,
     countryCode, geoHash, distance,
-    allDates, thisWeekendDate, dateFrom, dateTo,
+    allDates, thisWeekendDate, dateFrom, dateTo, includeTBA, includeTBD,
 },
 classifications, page = 0, scrapedItems = 0) {
     const url = new URL(`https://www.ticketmaster.com/api/next/graphql?`);
@@ -17,6 +17,8 @@ classifications, page = 0, scrapedItems = 0) {
         thisWeekendDate,
         dateFrom,
         dateTo,
+        includeTBA,
+        includeTBD,
     }, classifications, page);
 
     const extensions = {
@@ -45,7 +47,7 @@ classifications, page = 0, scrapedItems = 0) {
 function buildRequestVariables({
     sortBy,
     countryCode, geoHash, distance,
-    allDates, thisWeekendDate, dateFrom, dateTo,
+    allDates, thisWeekendDate, dateFrom, dateTo, includeTBA, includeTBD,
 }, classifications, page) {
     const { sort, asc } = getSortOptions(sortBy);
     const sortOrder = asc ? 'asc' : 'desc';
@@ -64,8 +66,8 @@ function buildRequestVariables({
         countryCode,
         radius: distance,
         unit: 'miles',
-        includeTBA: 'yes',
-        includeTBD: 'yes',
+        includeTBA,
+        includeTBD,
     };
 
     addDateVariable(variables, { allDates, thisWeekendDate, dateFrom, dateTo });
