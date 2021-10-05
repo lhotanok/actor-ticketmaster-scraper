@@ -13,7 +13,9 @@
 
 <!-- toc end -->
 
-## Introduction<a name="introduction"></a>
+<div id='introduction'/>
+
+## Introduction
 
 Want to know about all relevant events [Ticketmaster.com](https://www.ticketmaster.com/) promotes but don't have enough time to inspect the whole website? Going through all categories and genres one by one can get really time consuming when you're interested in many categories but still want to exclude some of them for which you need to use a filter. Ticketmaster.com user interface only provides filtering of 1 category and 1 genre (e. g. you can search category Concerts and filter rock genre only). But what if you're also fan of metal, pop or even classical music? Ticketmaster Scraper searches all of these events at once and stores them in one dataset. You can merge different categories with their corresponding subcategories or generate the individual datasets for each category or genre, it's only up to you.
 
