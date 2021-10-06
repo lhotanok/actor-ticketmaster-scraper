@@ -1,8 +1,8 @@
 # Ticketmaster Scraper
 
-## Table of contents
-
 <!-- toc start -->
+
+## Table of contents
 
 - [Introduction](#introduction)
 - [Cost of usage](#cost-of-usage)
@@ -12,8 +12,6 @@
 - [Output](#output)
 
 <!-- toc end -->
-
-<div id='introduction'/>
 
 ## Introduction
 
@@ -31,8 +29,6 @@ To provide compatibility with Ticketmaster's built-in search engine, Ticketmaste
 
 And finally filter events in a specific date range. However, Ticketmaster offers many events with no date announced or defined yet. In such case, the shortcuts TBA or TBD are used respectively. TBA and TBD events are included in the dataset by default. You can exclude them by setting TBA Events and TBD Events to `No`. Or you can even create a dataset of TBA and TBD events only.
 
-<div id='cost-of-usage'/>
-
 ## Cost of usage
 
 Ticketmaster Scraper is a free of charge actor but it requires [Apify Proxy](https://apify.com/proxy) to work properly. More specifically, it needs the [residential proxy](https://apify.com/pricing/proxy) as Ticketmaster's blocking policy is strict and it blocks datacenter proxies by default. Apart from the residential IPs cost, [compute units](https://apify.com/pricing/actors) are charged for running the actor at the Apify platform.
@@ -47,15 +43,11 @@ You can use residential proxies if you subscribe to a paid [plan at the Apify pl
 
 The actor is able to scrape approximately **15,000 events for 1 CU**. However, you'll never consume the whole CU during 1 run due to Ticketmaster's max items limitation. When you scrape the maximum number of events per 1 run which is about 5000 items, it should cost about 1/3 CU.
 
-<div id='number-of-results'/>
-
 ## Number of results
 
 Set the maximum number of scraped events using the `maxItems` input field. 
 
 **_NOTE:_**  Ticketmaster limits searched results to 5100 with 300 items per 1 page (17 pages). If you need to scrape more events, you'll have to create multiple more specific input configurations that give you fewer search results and then combine the results together.
-
-<div id='use-cases'/>
 
 ## Use Cases
 
@@ -65,8 +57,6 @@ Ticketmaster is one of the leading companies in the field of event tickets purch
 - **Price analysis** - compare Ticketmaster's price offers to other ticket providers
 - **Ticket availability monitoring** - set notifications to remind you the time when the relevant tickets are put up for sale
 - **Events analysis by different criteria** (location, date range) - monitor which countries are missing the events of a specific category and fill this spot
-
-<div id='input'/>
 
 ## Input
 
@@ -98,8 +88,6 @@ No date restrictions are set by default so `All Dates` field is checked. You may
 ### Other
 
 Apart from the previously mentioned fields, Ticketmaster Scraper also provides `Max Items` settings to limit the size of the result dataset. And to keep dataset processing simplified, it's able to sort the items by their date, relevance, distance or name.
-
-<div id='output'/>
 
 ## Output
 
