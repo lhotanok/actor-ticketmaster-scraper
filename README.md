@@ -47,7 +47,7 @@ The actor is able to scrape approximately **15,000 events for 1 CU**. However, y
 
 Set the maximum number of scraped events using the `maxItems` input field. 
 
-**_NOTE:_**  Ticketmaster limits searched results to 5100 with 300 items per 1 page (17 pages). If you need to scrape more events, you'll have to create multiple more specific input configurations that give you fewer search results and then combine the results together.
+> **_NOTE:_**  Ticketmaster limits searched results to 5100 with 300 items per 1 page (17 pages). If you need to scrape more events, you'll have to create multiple more specific input configurations that give you fewer search results and then combine the results together.
 
 ## Use Cases
 
@@ -71,11 +71,13 @@ First, check all event categories you want to scrape. Input categories are mappe
 - **Arts & Theater** Events
 - **Family** Events
 
-**_NOTE:_**  Feel free to check multiple categories at once but keep in mind that Ticketmaster limits the maximum [number of results](#numberOfResults) it returns. So it might be a good idea to create a separate dataset for each category and only specify more subcategories. Or you could add more restrictive filter such as the exact location or date range.
+>  **_NOTE:_**  Feel free to check multiple categories at once but keep in mind that Ticketmaster limits the maximum [number of results](#numberOfResults) it returns. So it might be a good idea to create a separate dataset for each category and only specify more subcategories. Or you could add more restrictive filter such as the exact location or date range.
 
 ### Subcategories
 
-The actor provides list of subcategories for each of the main categories. They represent different **disciplines** of Sport events and various **genres** of Concerts, Arts & Theater and Family events. `All Disciplines` or `All Genres` fields are checked by default so don't forget to uncheck them if you check the certain subcategories instead.
+The actor provides the list of subcategories for each of the main categories. These subcategories are hidden in the collapsible sections and they represent different **disciplines** of Sport events and various **genres** of Concerts, Arts & Theater and Family events. When you leave all subcategories of the scraped category unchecked, the actor scrapes everything from the given category.
+
+> **_NOTE:_**  Always check the category you want to scrape at the top of the input. If you only check the specific subcategories (genres or sport disciplines) without checking the corresponding category, the actor won't discover the subcategories you checked.
 
 ### Location
 
@@ -83,7 +85,7 @@ Specify a desired `country` in the form of [ISO Alpha-2 Country Code](https://ww
 
 ### Date
 
-No date restrictions are set by default so `All Dates` field is checked. You may uncheck it and check `This Weekend` field instead or specify the date range. While setting the date range, you don't have to fill both `From` and `To` fields. If it suits you, fill one of them only. Inside the date section, `TBA` and `TBD` events filter is also handled. By choosing the appropriate value, you can exclude the events whose date is to be announced (TBA) or to be defined (TBD). Or you can go the other way round and include TBA and TBD events only. 
+No date restrictions are set by default so all dates are scraped. If you wish to put some date restrictions, check `This Weekend` field or specify the date range. While setting the date range, you don't have to fill both `From` and `To` fields. If it suits you, fill one of them only. Inside the date section, `TBA` and `TBD` events filter is also handled. By choosing the appropriate value, you can exclude the events whose date is to be announced (TBA) or to be defined (TBD). Or you can go the other way round and include TBA and TBD events only. 
 
 ### Other
 
