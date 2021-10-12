@@ -5,31 +5,24 @@ const { utils: { log } } = Apify;
 export function getClassificationsToScrape(input, classifications) {
     const classificationIds = [];
 
-    // Maps category names on property names representing 'all subcategories' options
-    const categoriesAllEventsMap = {
-        concerts: 'concertsAll',
-        sports: 'sportsAll',
-        family: 'familyAll',
-        'arts-theater': 'arts-theaterAll',
-    };
+    const categories = ['concerts', 'sports', 'arts-theater', 'family'];
 
-    Object.keys(categoriesAllEventsMap).forEach((key) => {
+    categories.forEach((category) => {
         // Check if key category should be scraped
-        if (scrapeCategory(input, key)) {
-            log.info(`Category ${key} will be scraped.`);
+        if (scrapeCategory(input, category)) {
+            log.info(`Category ${category} will be scraped.`);
 
-            const genreIds = Object.keys(classifications[key].genres);
+            const genreIds = Object.keys(classifications[category].genres);
 
-            if (input[categoriesAllEventsMap[key]]) {
-                // All genres set, include them all in classificationIds
-                log.info(`All subcategories of ${key} will be scraped.`);
+            // for each genre, check if it is set in properties to 'true'
+            // and if so, include it in classificationIds
+            const inputClassifications = getClassificationsFromInput(input, genreIds);
+
+            classificationIds.push(...inputClassifications);
+
+            if (classificationIds.length === 0) {
+                // no specific classification set, scrape all classifications of this category
                 classificationIds.push(...genreIds);
-            } else {
-                // Specific genres set, for each genre, check if this key in properties is set to 'true'
-                // and if so, include it in classificationIds
-                const inputClassifications = getClassificationsFromInput(input, genreIds);
-
-                classificationIds.push(...inputClassifications);
             }
         }
     });

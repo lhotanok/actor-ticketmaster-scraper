@@ -1,7 +1,3 @@
-import Apify from 'apify';
-
-const { utils: { log } } = Apify;
-
 export async function scrapeCategories(context) {
     const categories = {};
 
@@ -29,8 +25,6 @@ export async function scrapeCategories(context) {
 
         categories[category].genres[genreId] = { genreName };
     });
-
-    log.info(`Scraped subcategories of ${category} category.`);
 
     return categories;
 }

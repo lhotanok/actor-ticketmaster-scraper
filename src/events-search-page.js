@@ -15,7 +15,7 @@ export async function handleEventsSearchPage(context, {
     const { userData } = request;
     const { scrapedItems, classifications } = userData;
 
-    log.debug(`Scraping url:
+    log.info(`Scraping url:
     ${request.url}`);
 
     const { data: { products: { page, items } } } = json;
