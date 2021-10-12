@@ -22,8 +22,9 @@ export async function scrapeCategories(context) {
     $(selector).not(':first-child').each((_index, el) => {
         const genreId = $(el).attr('value');
         const genreName = $(el).text();
+        const encodedGenreName = encodeGenreName(genreName);
 
-        categories[category].genres[genreId] = { genreName };
+        categories[category].genres[encodedGenreName] = { genreId, genreName };
     });
 
     return categories;
@@ -33,4 +34,9 @@ function getPageTitle({ $ }) {
     const parentElementSelector = '[data-tid=seoCategoryHeaderTag1]';
 
     return $(parentElementSelector).children().first().text();
+}
+
+function encodeGenreName(name) {
+    const lowercase = name.toLowerCase();
+    return lowercase.replaceAll('&', 'and').replaceAll('/', ' and ').replaceAll('\'', '').replaceAll(' ', '-');
 }

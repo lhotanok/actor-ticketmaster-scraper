@@ -56,520 +56,520 @@
       "maximum": 5100,
       "unit": "items"
     },
-    "KnvZfZ7vAvv": {
+    "alternative": {
       "title": "Alternative",
       "description": "Alternative concerts events",
       "type": "boolean",
       "sectionCaption": "Select Concert Genres",
       "sectionDescription": "Check all genres you wish to scrape. If no genres are checked, the actor scrapes all genres."
     },
-    "KnvZfZ7vAve": {
+    "ballads-and-romantic": {
       "title": "Ballads/Romantic",
       "description": "Ballads/Romantic concerts events",
       "type": "boolean"
     },
-    "KnvZfZ7vAvd": {
+    "blues": {
       "title": "Blues",
       "description": "Blues concerts events",
       "type": "boolean"
     },
-    "KnvZfZ7vAvA": {
+    "chanson-francaise": {
       "title": "Chanson Francaise",
       "description": "Chanson Francaise concerts events",
       "type": "boolean"
     },
-    "KnvZfZ7vAvk": {
+    "childrens-music": {
       "title": "Children's Music",
       "description": "Children's Music concerts events",
       "type": "boolean"
     },
-    "KnvZfZ7vAeJ": {
+    "classical": {
       "title": "Classical",
       "description": "Classical concerts events",
       "type": "boolean"
     },
-    "KnvZfZ7vAv6": {
+    "country": {
       "title": "Country",
       "description": "Country concerts events",
       "type": "boolean"
     },
-    "KnvZfZ7vAvF": {
+    "dance-and-electronic": {
       "title": "Dance/Electronic",
       "description": "Dance/Electronic concerts events",
       "type": "boolean"
     },
-    "KnvZfZ7vAva": {
+    "folk": {
       "title": "Folk",
       "description": "Folk concerts events",
       "type": "boolean"
     },
-    "KnvZfZ7vAv1": {
+    "hip-hop-and-rap": {
       "title": "Hip-Hop/Rap",
       "description": "Hip-Hop/Rap concerts events",
       "type": "boolean"
     },
-    "KnvZfZ7vAvJ": {
+    "holiday": {
       "title": "Holiday",
       "description": "Holiday concerts events",
       "type": "boolean"
     },
-    "KnvZfZ7vAvE": {
+    "jazz": {
       "title": "Jazz",
       "description": "Jazz concerts events",
       "type": "boolean"
     },
-    "KnvZfZ7vAJ6": {
+    "latin": {
       "title": "Latin",
       "description": "Latin concerts events",
       "type": "boolean"
     },
-    "KnvZfZ7vAvI": {
+    "medieval-and-renaissance": {
       "title": "Medieval/Renaissance",
       "description": "Medieval/Renaissance concerts events",
       "type": "boolean"
     },
-    "KnvZfZ7vAvt": {
+    "metal": {
       "title": "Metal",
       "description": "Metal concerts events",
       "type": "boolean"
     },
-    "KnvZfZ7vAvn": {
+    "new-age": {
       "title": "New Age",
       "description": "New Age concerts events",
       "type": "boolean"
     },
-    "KnvZfZ7vAvl": {
+    "other": {
       "title": "Other",
       "description": "Other concerts events",
       "type": "boolean"
     },
-    "KnvZfZ7vAev": {
+    "pop": {
       "title": "Pop",
       "description": "Pop concerts events",
       "type": "boolean"
     },
-    "KnvZfZ7vAee": {
+    "randb": {
       "title": "R&B",
       "description": "R&B concerts events",
       "type": "boolean"
     },
-    "KnvZfZ7vAed": {
+    "reggae": {
       "title": "Reggae",
       "description": "Reggae concerts events",
       "type": "boolean"
     },
-    "KnvZfZ7vAe7": {
+    "religious": {
       "title": "Religious",
       "description": "Religious concerts events",
       "type": "boolean"
     },
-    "KnvZfZ7vAeA": {
+    "rock": {
       "title": "Rock",
       "description": "Rock concerts events",
       "type": "boolean"
     },
-    "KnvZfZ7vAeF": {
+    "world": {
       "title": "World",
       "description": "World concerts events",
       "type": "boolean"
     },
-    "KnvZfZ7vAeI": {
+    "aquatics": {
       "title": "Aquatics",
       "description": "Aquatics sports events",
       "type": "boolean",
       "sectionCaption": "Select Sports Disciplines",
       "sectionDescription": "Check all disciplines you wish to scrape. If no disciplines are checked, the actor scrapes all disciplines."
     },
-    "KnvZfZ7vAet": {
+    "athletic-races": {
       "title": "Athletic Races",
       "description": "Athletic Races sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vAen": {
+    "badminton": {
       "title": "Badminton",
       "description": "Badminton sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vAel": {
+    "bandy": {
       "title": "Bandy",
       "description": "Bandy sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vAdv": {
+    "baseball": {
       "title": "Baseball",
       "description": "Baseball sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vAde": {
+    "basketball": {
       "title": "Basketball",
       "description": "Basketball sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vAdd": {
+    "biathlon": {
       "title": "Biathlon",
       "description": "Biathlon sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vAd7": {
+    "body-building": {
       "title": "Body Building",
       "description": "Body Building sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vAdA": {
+    "boxing": {
       "title": "Boxing",
       "description": "Boxing sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vAdk": {
+    "cricket": {
       "title": "Cricket",
       "description": "Cricket sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vAdF": {
+    "curling": {
       "title": "Curling",
       "description": "Curling sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vAda": {
+    "cycling": {
       "title": "Cycling",
       "description": "Cycling sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vAd1": {
+    "equestrian": {
       "title": "Equestrian",
       "description": "Equestrian sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vAJF": {
+    "esports": {
       "title": "eSports",
       "description": "eSports sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vAdJ": {
+    "extreme": {
       "title": "Extreme",
       "description": "Extreme sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vAJv": {
+    "field-hockey": {
       "title": "Field Hockey",
       "description": "Field Hockey sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vAJ7": {
+    "fitness": {
       "title": "Fitness",
       "description": "Fitness sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vA1l": {
+    "floorball": {
       "title": "Floorball",
       "description": "Floorball sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vAdE": {
+    "football": {
       "title": "Football",
       "description": "Football sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vAdt": {
+    "golf": {
       "title": "Golf",
       "description": "Golf sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vAdn": {
+    "gymnastics": {
       "title": "Gymnastics",
       "description": "Gymnastics sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vAdl": {
+    "handball": {
       "title": "Handball",
       "description": "Handball sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vAdI": {
+    "hockey": {
       "title": "Hockey",
       "description": "Hockey sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vA7v": {
+    "ice-skating": {
       "title": "Ice Skating",
       "description": "Ice Skating sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vA7e": {
+    "indoor-soccer": {
       "title": "Indoor Soccer",
       "description": "Indoor Soccer sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vA77": {
+    "lacrosse": {
       "title": "Lacrosse",
       "description": "Lacrosse sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vA7d": {
+    "martial-arts": {
       "title": "Martial Arts",
       "description": "Martial Arts sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vA7A": {
+    "miscellaneous": {
       "title": "Miscellaneous",
       "description": "Miscellaneous sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vA7k": {
+    "motorsports-and-racing": {
       "title": "Motorsports/Racing",
       "description": "Motorsports/Racing sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vA76": {
+    "netball": {
       "title": "Netball",
       "description": "Netball sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vAea": {
+    "rodeo": {
       "title": "Rodeo",
       "description": "Rodeo sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vAJA": {
+    "roller-derby": {
       "title": "Roller Derby",
       "description": "Roller Derby sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vA7a": {
+    "roller-hockey": {
       "title": "Roller Hockey",
       "description": "Roller Hockey sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vA71": {
+    "rugby": {
       "title": "Rugby",
       "description": "Rugby sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vA7J": {
+    "ski-jumping": {
       "title": "Ski Jumping",
       "description": "Ski Jumping sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vAd6": {
+    "skiing": {
       "title": "Skiing",
       "description": "Skiing sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vA7E": {
+    "soccer": {
       "title": "Soccer",
       "description": "Soccer sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vAJd": {
+    "softball": {
       "title": "Softball",
       "description": "Softball sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vA7I": {
+    "squash": {
       "title": "Squash",
       "description": "Squash sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vA7t": {
+    "surfing": {
       "title": "Surfing",
       "description": "Surfing sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vA7n": {
+    "swimming": {
       "title": "Swimming",
       "description": "Swimming sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vA7l": {
+    "table-tennis": {
       "title": "Table Tennis",
       "description": "Table Tennis sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vAAv": {
+    "tennis": {
       "title": "Tennis",
       "description": "Tennis sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vAAe": {
+    "toros": {
       "title": "Toros",
       "description": "Toros sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vAAd": {
+    "track-and-field": {
       "title": "Track & Field",
       "description": "Track & Field sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vAA7": {
+    "volleyball": {
       "title": "Volleyball",
       "description": "Volleyball sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vAAA": {
+    "waterpolo": {
       "title": "Waterpolo",
       "description": "Waterpolo sports events",
       "type": "boolean"
     },
-    "KnvZfZ7vAAk": {
+    "wrestling": {
       "title": "Wrestling",
       "description": "Wrestling sports events",
       "type": "boolean"
     },
-    "KnvZfZ7v7na": {
+    "childrens-theatre": {
       "title": "Children's Theatre",
       "description": "Children's Theatre arts-theater events",
       "type": "boolean",
       "sectionCaption": "Select Arts & Theater Genres",
       "sectionDescription": "Check all genres you wish to scrape. If no genres are checked, the actor scrapes all genres."
     },
-    "KnvZfZ7v7n1": {
+    "circus-and-specialty-acts": {
       "title": "Circus & Specialty Acts",
       "description": "Circus & Specialty Acts arts-theater events",
       "type": "boolean"
     },
-    "KnvZfZ7v7nJ": {
+    "classical_arts-theater": {
       "title": "Classical",
       "description": "Classical arts-theater events",
       "type": "boolean"
     },
-    "KnvZfZ7vAe1": {
+    "comedy": {
       "title": "Comedy",
       "description": "Comedy arts-theater events",
       "type": "boolean"
     },
-    "KnvZfZ7v7nE": {
+    "cultural": {
       "title": "Cultural",
       "description": "Cultural arts-theater events",
       "type": "boolean"
     },
-    "KnvZfZ7v7nI": {
+    "dance": {
       "title": "Dance",
       "description": "Dance arts-theater events",
       "type": "boolean"
     },
-    "KnvZfZ7v7nt": {
+    "espectaculo": {
       "title": "Espectaculo",
       "description": "Espectaculo arts-theater events",
       "type": "boolean"
     },
-    "KnvZfZ7v7nn": {
+    "fashion": {
       "title": "Fashion",
       "description": "Fashion arts-theater events",
       "type": "boolean"
     },
-    "KnvZfZ7v7nl": {
+    "fine-art": {
       "title": "Fine Art",
       "description": "Fine Art arts-theater events",
       "type": "boolean"
     },
-    "KnvZfZ7v7lv": {
+    "magic-and-illusion": {
       "title": "Magic & Illusion",
       "description": "Magic & Illusion arts-theater events",
       "type": "boolean"
     },
-    "KnvZfZ7v7le": {
+    "miscellaneous_arts-theater": {
       "title": "Miscellaneous",
       "description": "Miscellaneous arts-theater events",
       "type": "boolean"
     },
-    "KnvZfZ7v7ld": {
+    "miscellaneous-theatre": {
       "title": "Miscellaneous Theatre",
       "description": "Miscellaneous Theatre arts-theater events",
       "type": "boolean"
     },
-    "KnvZfZ7v7l7": {
+    "multimedia": {
       "title": "Multimedia",
       "description": "Multimedia arts-theater events",
       "type": "boolean"
     },
-    "KnvZfZ7v7lA": {
+    "music": {
       "title": "Music",
       "description": "Music arts-theater events",
       "type": "boolean"
     },
-    "KnvZfZ7v7lk": {
+    "opera": {
       "title": "Opera",
       "description": "Opera arts-theater events",
       "type": "boolean"
     },
-    "KnvZfZ7v7l6": {
+    "performance-art": {
       "title": "Performance Art",
       "description": "Performance Art arts-theater events",
       "type": "boolean"
     },
-    "KnvZfZ7v7lF": {
+    "puppetry": {
       "title": "Puppetry",
       "description": "Puppetry arts-theater events",
       "type": "boolean"
     },
-    "KnvZfZ7v7la": {
+    "spectacular": {
       "title": "Spectacular",
       "description": "Spectacular arts-theater events",
       "type": "boolean"
     },
-    "KnvZfZ7v7l1": {
+    "theatre": {
       "title": "Theatre",
       "description": "Theatre arts-theater events",
       "type": "boolean"
     },
-    "KnvZfZ7v7lJ": {
+    "variety": {
       "title": "Variety",
       "description": "Variety arts-theater events",
       "type": "boolean"
     },
-    "KnvZfZ7v7lF_family": {
+    "puppetry_family": {
       "title": "Puppetry",
       "description": "Puppetry family events",
       "type": "boolean",
       "sectionCaption": "Select Family Genres",
       "sectionDescription": "Check all genres you wish to scrape. If no genres are checked, the actor scrapes all genres."
     },
-    "KnvZfZ7v7lI": {
+    "ice-shows": {
       "title": "Ice Shows",
       "description": "Ice Shows family events",
       "type": "boolean"
     },
-    "KnvZfZ7v7lv_family": {
+    "magic-and-illusion_family": {
       "title": "Magic/Illusion",
       "description": "Magic/Illusion family events",
       "type": "boolean"
     },
-    "KnvZfZ7v7n1_family": {
+    "circus-and-specialty-acts_family": {
       "title": "Circus/Specialty Acts",
       "description": "Circus/Specialty Acts family events",
       "type": "boolean"
     },
-    "KnvZfZ7v7na_family": {
+    "childrens-theater": {
       "title": "Children's Theater",
       "description": "Children's Theater family events",
       "type": "boolean"
     },
-    "KnvZfZ7vAea_family": {
+    "rodeo_family": {
       "title": "Rodeo",
       "description": "Rodeo family events",
       "type": "boolean"
     },
-    "KnvZfZ7vAeE": {
+    "fairs-and-festivals": {
       "title": "Fairs/Festivals",
       "description": "Fairs/Festivals family events",
       "type": "boolean"
     },
-    "KZazBEonSMnZfZ7vFdE": {
+    "latin-childrens": {
       "title": "Latin Children's",
       "description": "Latin Children's family events",
       "type": "boolean"
     },
-    "KnvZfZ7vAvk_family": {
+    "childrens-music_family": {
       "title": "Children's Music",
       "description": "Children's Music family events",
       "type": "boolean"
     },
-    "KnvZfZ7vA1n": {
+    "miscellaneous-and-family": {
       "title": "Miscellaneous/Family",
       "description": "Miscellaneous/Family family events",
       "type": "boolean"
     },
-    "KnvZfZ7vAkF": {
+    "film-and-family": {
       "title": "Film/Family",
       "description": "Film/Family family events",
       "type": "boolean"

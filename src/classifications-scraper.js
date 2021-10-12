@@ -12,7 +12,9 @@ export function getClassificationsToScrape(input, classifications) {
         if (scrapeCategory(input, category)) {
             log.info(`Category ${category} will be scraped.`);
 
-            const genreIds = Object.keys(classifications[category].genres);
+            const genreIds = Object.keys(classifications[category].genres).map((key) => {
+                return classifications[category].genres[key].genreId;
+            });
 
             // for each genre, check if it is set in properties to 'true'
             // and if so, include it in classificationIds
