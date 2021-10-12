@@ -12,19 +12,18 @@ export function getClassificationsToScrape(input, classifications) {
         if (scrapeCategory(input, category)) {
             log.info(`Category ${category} will be scraped.`);
 
-            const genreIds = Object.keys(classifications[category].genres).map((key) => {
-                return classifications[category].genres[key].genreId;
-            });
+            const { genres } = classifications[category];
 
             // for each genre, check if it is set in properties to 'true'
             // and if so, include it in classificationIds
-            const inputClassifications = getClassificationsFromInput(input, genreIds);
-            if (inputClassifications.length === 0) {
+            const inputClassificationIds = getClassificationIdsFromInput(input, genres);
+            if (inputClassificationIds.length === 0) {
                 // no specific classification set, scrape all classifications of this category
-                inputClassifications.push(...genreIds);
+                const allGenreIds = Object.keys(genres).map((genreName) => genres[genreName].genreId);
+                inputClassificationIds.push(...allGenreIds);
             }
 
-            classificationIds.push(...inputClassifications);
+            classificationIds.push(...inputClassificationIds);
         }
     });
 
@@ -38,20 +37,20 @@ function scrapeCategory(input, category) {
     return input[category];
 }
 
-function getClassificationsFromInput(input, categoryGenreIds) {
-    const classificationIds = [];
-
+function getClassificationIdsFromInput(input, genres) {
     // input with duplicate properties removed
     const normalizedInput = {};
 
     Object.keys(input).forEach((property) => {
-        const normalizedProperty = property.split('-')[0]; // handles classification IDs duplicates that include '-'
+        const normalizedProperty = property.split('_')[0]; // handles classification IDs duplicates that include '_'
         normalizedInput[normalizedProperty] = input[property];
     });
 
-    categoryGenreIds.forEach((genreId) => {
-        if (normalizedInput[genreId]) {
-            classificationIds.push(genreId);
+    const classificationIds = [];
+
+    Object.keys(genres).map((genreName) => {
+        if (normalizedInput[genreName]) {
+            classificationIds.push(genres[genreName].genreId);
         }
     });
 
