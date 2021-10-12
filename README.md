@@ -41,7 +41,7 @@ You can use residential proxies if you subscribe to a paid [plan at the Apify pl
 
 ### Consumption units
 
-The actor is able to scrape approximately **15,000 events for 1 CU**. However, you'll never consume the whole CU during 1 run due to Ticketmaster's max items limitation. When you scrape the maximum number of events per 1 run which is about 5000 items, it should cost about 1/3 CU.
+The actor is able to scrape approximately **20,000 events for 1 CU**. However, you'll never consume the whole CU during 1 run due to Ticketmaster's max items limitation. When you scrape the maximum number of events per 1 run which is about 5000 items, it should cost about 1/4 CU.
 
 ## Number of results
 
