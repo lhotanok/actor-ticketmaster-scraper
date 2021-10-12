@@ -3,7 +3,7 @@ import { URL, URLSearchParams } from 'url';
 export function buildFetchRequest({
     sortBy,
     countryCode, geoHash, distance,
-    allDates, thisWeekendDate, dateFrom, dateTo, includeTBA, includeTBD,
+    thisWeekendDate, dateFrom, dateTo, includeTBA, includeTBD,
 },
 classifications, page = 0, scrapedItems = 0) {
     const url = new URL(`https://www.ticketmaster.com/api/next/graphql?`);
@@ -13,7 +13,6 @@ classifications, page = 0, scrapedItems = 0) {
         countryCode,
         geoHash,
         distance,
-        allDates,
         thisWeekendDate,
         dateFrom,
         dateTo,
@@ -47,7 +46,7 @@ classifications, page = 0, scrapedItems = 0) {
 function buildRequestVariables({
     sortBy,
     countryCode, geoHash, distance,
-    allDates, thisWeekendDate, dateFrom, dateTo, includeTBA, includeTBD,
+    thisWeekendDate, dateFrom, dateTo, includeTBA, includeTBD,
 }, classifications, page) {
     const { sort, asc } = getSortOptions(sortBy);
     const sortOrder = asc ? 'asc' : 'desc';
@@ -70,7 +69,7 @@ function buildRequestVariables({
         includeTBD,
     };
 
-    addDateVariable(variables, { allDates, thisWeekendDate, dateFrom, dateTo });
+    addDateVariable(variables, { thisWeekendDate, dateFrom, dateTo });
 
     return variables;
 }
@@ -94,20 +93,17 @@ function getSortOptions(sortBy) {
     return sortOptions;
 }
 
-function addDateVariable(variables, { allDates, thisWeekendDate, dateFrom, dateTo }) {
-    // if all dates are set, no filter needs to be specified
-    if (!allDates) {
-        if (thisWeekendDate) {
-            variables.localStartEndDateTime = getWeekendDatesString();
-        } else if (dateFrom && dateTo) {
-            variables.localStartEndDateTime = getDateRangeString(dateFrom, dateTo);
-        } else if (dateFrom) {
-            validateDateFormat(dateFrom);
-            variables.localStartDateTime = new Date(dateFrom);
-        } else if (dateTo) {
-            validateDateFormat(dateTo);
-            variables.localEndDateTime = new Date(dateTo);
-        }
+function addDateVariable(variables, { thisWeekendDate, dateFrom, dateTo }) {
+    if (thisWeekendDate) {
+        variables.localStartEndDateTime = getWeekendDatesString();
+    } else if (dateFrom && dateTo) {
+        variables.localStartEndDateTime = getDateRangeString(dateFrom, dateTo);
+    } else if (dateFrom) {
+        validateDateFormat(dateFrom);
+        variables.localStartDateTime = new Date(dateFrom);
+    } else if (dateTo) {
+        validateDateFormat(dateTo);
+        variables.localEndDateTime = new Date(dateTo);
     }
 }
 

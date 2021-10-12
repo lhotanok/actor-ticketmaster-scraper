@@ -17,7 +17,7 @@ Apify.main(async () => {
         maxItems,
         sortBy,
         countryCode, geoHash, distance,
-        allDates, thisWeekendDate, dateFrom, dateTo, includeTBA, includeTBD,
+        thisWeekendDate, dateFrom, dateTo, includeTBA, includeTBD,
     } = input;
 
     let categoryState = await Apify.getValue('CATEGORY_STATE') || {};
@@ -59,7 +59,6 @@ Apify.main(async () => {
         countryCode,
         geoHash,
         distance,
-        allDates,
         thisWeekendDate,
         dateFrom,
         dateTo,
@@ -78,7 +77,6 @@ Apify.main(async () => {
             countryCode,
             geoHash,
             distance,
-            allDates,
             thisWeekendDate,
             dateFrom,
             dateTo,

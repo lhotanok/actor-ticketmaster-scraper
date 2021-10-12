@@ -500,9 +500,7 @@
     "KnvZfZ7v7lF": {
       "title": "Puppetry",
       "description": "Puppetry arts-theater events",
-      "type": "boolean",
-      "sectionCaption": "Select Family Genres",
-      "sectionDescription": "Check all genres you wish to scrape. If no genres are checked, the actor scrapes all genres."
+      "type": "boolean"
     },
     "KnvZfZ7v7la": {
       "title": "Spectacular",
@@ -522,7 +520,9 @@
     "KnvZfZ7v7lF_family": {
       "title": "Puppetry",
       "description": "Puppetry family events",
-      "type": "boolean"
+      "type": "boolean",
+      "sectionCaption": "Select Family Genres",
+      "sectionDescription": "Check all genres you wish to scrape. If no genres are checked, the actor scrapes all genres."
     },
     "KnvZfZ7v7lI": {
       "title": "Ice Shows",
@@ -600,19 +600,12 @@
       "minimum": 0,
       "maximum": 5000
     },
-    "allDates": {
-      "title": "All Dates",
-      "description": "Shows all events.",
-      "type": "boolean",
-      "default": true,
-      "sectionCaption": "Date Filter",
-      "sectionDescription": "Specify date filter for scraped events. If you want to specify a date range, uncheck 'All Dates' option first and set your chosen option instead."
-    },
     "thisWeekendDate": {
       "title": "This Weekend",
       "description": "Filter only those events that take place during this weekend.",
       "type": "boolean",
-      "default": false
+      "sectionCaption": "Date Filter",
+      "sectionDescription": "Specify date filter for scraped events. Check 'This Weekend' option or specify date range according to your needs."
     },
     "dateFrom": {
       "title": "From",

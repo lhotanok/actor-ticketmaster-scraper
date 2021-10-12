@@ -9,7 +9,7 @@ export async function handleEventsSearchPage(context, {
     maxItems,
     sortBy,
     countryCode, geoHash, distance,
-    allDates, thisWeekendDate, dateFrom, dateTo, includeTBA, includeTBD,
+    thisWeekendDate, dateFrom, dateTo, includeTBA, includeTBD,
 }) {
     const { request, json } = context;
     const { userData } = request;
@@ -43,7 +43,6 @@ export async function handleEventsSearchPage(context, {
             countryCode,
             geoHash,
             distance,
-            allDates,
             thisWeekendDate,
             dateFrom,
             dateTo,
