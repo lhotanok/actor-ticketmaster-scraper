@@ -17,13 +17,12 @@ export function getClassificationsToScrape(input, classifications) {
             // for each genre, check if it is set in properties to 'true'
             // and if so, include it in classificationIds
             const inputClassifications = getClassificationsFromInput(input, genreIds);
+            if (inputClassifications.length === 0) {
+                // no specific classification set, scrape all classifications of this category
+                inputClassifications.push(...genreIds);
+            }
 
             classificationIds.push(...inputClassifications);
-
-            if (classificationIds.length === 0) {
-                // no specific classification set, scrape all classifications of this category
-                classificationIds.push(...genreIds);
-            }
         }
     });
 
