@@ -79,6 +79,10 @@ The actor provides the list of subcategories for each of the main categories. Th
 
 > **_NOTE:_**  Always check the category you want to scrape at the top of the input. If you only check the specific subcategories (genres or sport disciplines) without checking the corresponding category, the actor won't discover the subcategories you checked.
 
+#### Property names
+
+Categories can contain subcategories of the same name. Sometimes they refer to the same subcategory, other time they represent different kinds of events (such as classical concerts vs classical arts and theater). To distinguish which subcategory should be scraped, use *'_category-name'* postfix after the subcategory name (see examples in the [Input Schema](https://apify.com/lhotanok/ticketmaster-scraper/input-schema), e. g. `classical_concerts` vs `classical_arts-theater`). You can use property names without *'_category-name'* postfix as well but they will be matched with all categories that include this subcategory. So if you check `concerts` and `arts-theater` categories for scraping and then specify `classical` as `true`, both classical concerts and theaters will be scraped. Whereas if you wanted to scrape only classical concerts and all theaters, you would have to set `classical_concerts` property to achieve this behavior.
+
 ### Location
 
 Specify a desired `country` in the form of [ISO Alpha-2 Country Code](https://www.iban.com/country-codes) or an exact geographical point by filling the `geohash` value. Depending on your needs, you can use both of these fields or just one of them. Last but not least, set the `distance` radius in mile units.
@@ -90,6 +94,46 @@ No date restrictions are set by default so all dates are scraped. If you wish to
 ### Other
 
 Apart from the previously mentioned fields, Ticketmaster Scraper also provides `Max Items` settings to limit the size of the result dataset. And to keep dataset processing simplified, it's able to sort the items by their date, relevance, distance or name.
+
+### Examples
+
+**Scrape all concerts**
+
+```json
+{
+    "concerts": true,
+    "countryCode": "US",
+    "geoHash": "dr5regw3pg6ft"
+}
+```
+
+**Scrape specific concerts**
+
+```json
+{
+    "concerts": true,
+    "rock": true,
+    "metal": true,
+    "pop": true,
+    "countryCode": "US"
+}
+```
+
+**Scrape multiple categories with specific subcategories**
+
+```json
+{
+    "concerts": true,
+    "arts-theater": true,
+    "rock": true,
+    "metal": true,
+    "pop": true,
+    "comedy": true,
+    "opera": true,
+    "classical_arts-theater": true,
+    "geoHash": "dr5regw3pg6ft"
+}
+```
 
 ## Output
 
