@@ -22,9 +22,12 @@ export async function handleEventsSearchPage(context, {
 
     const events = getEventsFromResponse(items);
 
-    const remainingItemsCount = maxItems - scrapedItems;
-    if (remainingItemsCount < events.length) {
-        events.splice(remainingItemsCount);
+    // handle maxItems restriction if set
+    if (maxItems) {
+        const remainingItemsCount = maxItems - scrapedItems;
+        if (remainingItemsCount < events.length) {
+            events.splice(remainingItemsCount);
+        }
     }
 
     await pushData(events);
@@ -32,11 +35,11 @@ export async function handleEventsSearchPage(context, {
     const totalScrapedItems = scrapedItems + events.length;
     log.info(`Total results: ${page.totalElements}`);
     log.info(`Total pages: ${page.totalPages}`);
-    log.info(`Current page: ${userData.page}`);
+    log.info(`Current page: ${userData.page + 1}`);
     log.info(`Scraped events count: ${totalScrapedItems}`);
 
     // there are more events to scrape
-    if (page.totalPages > userData.page + 1 && totalScrapedItems < maxItems) {
+    if (page.totalPages > userData.page + 1 && (!maxItems || totalScrapedItems < maxItems)) {
         const { crawler: { requestQueue } } = context;
         const nextRequest = buildFetchRequest({
             sortBy,
@@ -55,6 +58,10 @@ export async function handleEventsSearchPage(context, {
 }
 
 function getEventsFromResponse(items) {
+    if (!items) {
+        return [];
+    }
+
     const events = items.map((item) => {
         const { jsonLd } = item;
 
