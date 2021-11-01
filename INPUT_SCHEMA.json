@@ -51,7 +51,7 @@
       "title": "Max Items",
       "description": "Choose maximum number of items you want to scrape and save to the result dataset.",
       "type": "integer",
-      "default": 300,
+      "prefill": 300,
       "minimum": 1,
       "maximum": 5100,
       "unit": "items"
@@ -78,12 +78,12 @@
       "description": "Chanson Francaise concerts events",
       "type": "boolean"
     },
-    "childrens-music": {
+    "childrens-music_concerts": {
       "title": "Children's Music",
       "description": "Children's Music concerts events",
       "type": "boolean"
     },
-    "classical": {
+    "classical_concerts": {
       "title": "Classical",
       "description": "Classical concerts events",
       "type": "boolean"
@@ -310,7 +310,7 @@
       "description": "Martial Arts sports events",
       "type": "boolean"
     },
-    "miscellaneous": {
+    "miscellaneous_sports": {
       "title": "Miscellaneous",
       "description": "Miscellaneous sports events",
       "type": "boolean"
@@ -325,7 +325,7 @@
       "description": "Netball sports events",
       "type": "boolean"
     },
-    "rodeo": {
+    "rodeo_sports": {
       "title": "Rodeo",
       "description": "Rodeo sports events",
       "type": "boolean"
@@ -422,7 +422,7 @@
       "sectionCaption": "Select Arts & Theater Genres",
       "sectionDescription": "Check all genres you wish to scrape. If no genres are checked, the actor scrapes all genres."
     },
-    "circus-and-specialty-acts": {
+    "circus-and-specialty-acts_arts-theater": {
       "title": "Circus & Specialty Acts",
       "description": "Circus & Specialty Acts arts-theater events",
       "type": "boolean"
@@ -462,7 +462,7 @@
       "description": "Fine Art arts-theater events",
       "type": "boolean"
     },
-    "magic-and-illusion": {
+    "magic-and-illusion_arts-theater": {
       "title": "Magic & Illusion",
       "description": "Magic & Illusion arts-theater events",
       "type": "boolean"
@@ -497,7 +497,7 @@
       "description": "Performance Art arts-theater events",
       "type": "boolean"
     },
-    "puppetry": {
+    "puppetry_arts-theater": {
       "title": "Puppetry",
       "description": "Puppetry arts-theater events",
       "type": "boolean"
