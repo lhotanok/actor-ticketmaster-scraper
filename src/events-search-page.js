@@ -12,13 +12,19 @@ export async function handleEventsSearchPage(context, {
     thisWeekendDate, dateFrom, dateTo, includeTBA, includeTBD,
 }) {
     const { request, json } = context;
-    const { userData } = request;
+    const { url, userData } = request;
     const { scrapedItems, classifications } = userData;
 
     log.info(`Scraping url:
     ${request.url}`);
 
-    const { data: { products: { page, items } } } = json;
+    const { data: { products } } = json;
+
+    if (!products) {
+        return;
+    }
+
+    const { page, items } = products;
 
     const events = getEventsFromResponse(items);
 
@@ -33,10 +39,11 @@ export async function handleEventsSearchPage(context, {
     await pushData(events);
 
     const totalScrapedItems = scrapedItems + events.length;
-    log.info(`Total results: ${page.totalElements}`);
-    log.info(`Total pages: ${page.totalPages}`);
-    log.info(`Current page: ${userData.page + 1}`);
-    log.info(`Scraped events count: ${totalScrapedItems}`);
+    log.info(`
+    Total results: ${page.totalElements}
+    Total pages: ${page.totalPages}
+    Current page: ${userData.page + 1}`, { url });
+    log.info(`Total scraped events count: ${totalScrapedItems}`);
 
     // there are more events to scrape
     if (page.totalPages > userData.page + 1 && (!maxItems || totalScrapedItems < maxItems)) {

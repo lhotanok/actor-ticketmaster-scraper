@@ -5,6 +5,7 @@ import { getClassificationsToScrape } from './classifications-scraper.js';
 import { scrapeCategories } from './category-search-page.js';
 import { handleEventsSearchPage } from './events-search-page.js';
 import { buildFetchRequest } from './request-builder.js';
+import { REQUEST_TIMEOUT } from './consts.js';
 
 const { utils: { log } } = Apify;
 
@@ -41,6 +42,7 @@ Apify.main(async () => {
     const categoriesCrawler = new Apify.CheerioCrawler({
         requestQueue,
         proxyConfiguration,
+        requestTimeoutSecs: REQUEST_TIMEOUT,
         handlePageFunction: async (context) => {
             const scrapedCategories = await scrapeCategories(context);
             categoryState = { ...categoryState, ...scrapedCategories };
@@ -71,6 +73,7 @@ Apify.main(async () => {
     const eventsCrawler = new Apify.CheerioCrawler({
         requestQueue,
         proxyConfiguration,
+        requestTimeoutSecs: REQUEST_TIMEOUT,
         handlePageFunction: async (context) => handleEventsSearchPage(context, {
             maxItems,
             sortBy,
