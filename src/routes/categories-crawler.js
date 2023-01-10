@@ -1,4 +1,18 @@
-export async function scrapeCategories(context) {
+import { createCheerioRouter } from 'crawlee';
+
+export const categoriesRouter = createCheerioRouter();
+
+categoriesRouter.addDefaultHandler(async (context) => {
+    const scrapedCategories = await scrapeCategories(context);
+
+    const categoryState = await context.crawler.useState();
+
+    Object.entries(scrapedCategories).forEach(([key, value]) => {
+        categoryState[key] = value;
+    });
+});
+
+async function scrapeCategories(context) {
     const categories = {};
 
     const { $, request: { url } } = context;

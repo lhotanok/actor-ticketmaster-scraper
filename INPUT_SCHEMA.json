@@ -51,7 +51,7 @@
       "title": "Max Items",
       "description": "Choose maximum number of items you want to scrape and save to the result dataset.",
       "type": "integer",
-      "prefill": 300,
+      "prefill": 200,
       "minimum": 1,
       "maximum": 5100,
       "unit": "items"

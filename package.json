@@ -1,23 +1,26 @@
 {
 	"name": "ticketmaster-scraper",
 	"version": "0.0.1",
-	"type": "module",
-	"description": "This is a boilerplate of an Apify actor.",
+    "type": "module",
+    "description": "This is a boilerplate of an Apify actor.",
+    "engines": {
+        "node": ">=16.0.0"
+    },
 	"dependencies": {
-		"apify": "^2.0.0",
-		"ngeohash": "^0.6.3",
-		"puppeteer": "*"
+		"apify": "^3.1.1",
+		"crawlee": "^3.1.4",
+		"ngeohash": "^0.6.3"
 	},
 	"devDependencies": {
-		"@apify/eslint-config": "^0.1.3",
-		"eslint": "^7.0.0"
-	},
+        "@apify/eslint-config": "^0.3.1",
+        "eslint": "^8.20.0"
+    },
 	"scripts": {
-		"start": "node src/main.js",
-		"lint": "./node_modules/.bin/eslint ./src --ext .js,.jsx",
-		"lint:fix": "./node_modules/.bin/eslint ./src --ext .js,.jsx --fix",
-		"test": "echo \"Error: oops, the actor has no tests yet, sad!\" && exit 1"
-	},
+        "start": "node src/main.js",
+        "lint": "eslint ./src --ext .js,.jsx",
+        "lint:fix": "eslint ./src --ext .js,.jsx --fix",
+        "test": "echo \"Error: oops, the actor has no tests yet, sad!\" && exit 1"
+    },
 	"author": "lhotanok",
 	"license": "ISC"
 }
