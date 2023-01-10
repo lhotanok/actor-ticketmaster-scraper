@@ -1,8 +1,6 @@
-import Apify from 'apify';
+import { log } from 'apify';
 
-const { utils: { log } } = Apify;
-
-export function getClassificationsToScrape(input, classifications) {
+export function parseClassificationsToScrape(input, classifications) {
     const classificationIds = [];
 
     const categories = ['concerts', 'sports', 'arts-theater', 'family'];

@@ -1,11 +1,40 @@
-/* eslint-disable import/extensions */
-import Apify, { pushData } from 'apify';
+import { Actor } from 'apify';
+import { createCheerioRouter, log } from 'crawlee';
+import { buildFetchRequest } from '../request-builder.js';
 
-import { buildFetchRequest } from './request-builder.js';
+export const eventsRouter = createCheerioRouter();
 
-const { utils: { log } } = Apify;
+eventsRouter.addDefaultHandler(async (context) => {
+    const state = await context.crawler.useState();
 
-export async function handleEventsSearchPage(context, {
+    const {
+        maxItems,
+        sortBy,
+        countryCode,
+        geoHash,
+        distance,
+        thisWeekendDate,
+        dateFrom,
+        dateTo,
+        includeTBA,
+        includeTBD,
+    } = state;
+
+    await handleEventsSearchPage(context, {
+        maxItems,
+        sortBy,
+        countryCode,
+        geoHash,
+        distance,
+        thisWeekendDate,
+        dateFrom,
+        dateTo,
+        includeTBA,
+        includeTBD,
+    });
+});
+
+async function handleEventsSearchPage(context, {
     maxItems,
     sortBy,
     countryCode, geoHash, distance,
@@ -26,6 +55,8 @@ export async function handleEventsSearchPage(context, {
 
     const { page, items } = products;
 
+    log.info(`Found ${items.length} events`, { page: page.number });
+
     const events = getEventsFromResponse(items);
 
     // handle maxItems restriction if set
@@ -36,7 +67,7 @@ export async function handleEventsSearchPage(context, {
         }
     }
 
-    await pushData(events);
+    await Actor.pushData(events);
 
     const totalScrapedItems = scrapedItems + events.length;
     log.info(`
@@ -60,6 +91,7 @@ export async function handleEventsSearchPage(context, {
             includeTBD,
         }, classifications, userData.page + 1, totalScrapedItems);
 
+        log.info(`Enqueuing next search request for page: ${userData.page + 1}`);
         await requestQueue.addRequest(nextRequest);
     }
 }
@@ -74,7 +106,7 @@ function getEventsFromResponse(items) {
 
         // classification info
         const { id, name, url, genreName, segmentName } = item;
-        const { description } = jsonLd;
+        const { description, image } = jsonLd;
 
         // date
         const { datesFormatted: { dateTitle, dateSubTitle }, dates: { localDate, dateTBA, timeTBA } } = item;
@@ -83,18 +115,31 @@ function getEventsFromResponse(items) {
         const { location, offers, performer } = jsonLd;
         const { address: { streetAddress, addressLocality, addressRegion, postalCode, addressCountry } } = location;
 
+        // priceRanges
+        const priceRanges = (item.priceRanges || []).map((range) => {
+            // eslint-disable-next-line dot-notation
+            delete range['__typename'];
+            return range;
+        });
+
         const placeUrl = location.sameAs;
         const offerUrl = offers.url;
         const { availabilityStarts, priceCurrency, price } = offers;
-        const offer = { offerUrl, availabilityStarts, price, priceCurrency };
+        const offer = {
+            offerUrl,
+            availabilityStarts,
+            price: price ? parseFloat(price.replace(/,/g, '')) : null,
+            priceCurrency: priceCurrency || null,
+        };
 
         const performers = extractPerformers(performer);
 
         const event = {
-            ...{ id, url, name, description, segmentName, genreName },
+            ...{ id, url, name, description, image, segmentName, genreName },
             ...{ dateTitle, dateSubTitle, localDate, dateTBA, timeTBA },
             ...{ streetAddress, addressLocality, addressRegion, postalCode, addressCountry, placeUrl },
             offer,
+            priceRanges,
             performers,
         };
 

@@ -33,7 +33,7 @@ And finally filter events in a specific date range. However, Ticketmaster offers
 
 Ticketmaster Scraper is a free of charge actor but it requires [Apify Proxy](https://apify.com/proxy) to work properly. More specifically, it needs the [residential proxy](https://apify.com/pricing/proxy) as Ticketmaster's blocking policy is strict and it blocks datacenter proxies by default. Apart from the residential IPs cost, [compute units](https://apify.com/pricing/actors) are charged for running the actor at the Apify platform.
 
-Ticketmaster Scraper is able to scrape 300 events per 1 request which keeps both compute units and residential proxy expenses very low.
+Ticketmaster Scraper is able to scrape 200 events per 1 request which keeps both compute units and residential proxy expenses very low.
 
 ### Residential proxies
 
@@ -45,9 +45,9 @@ The actor is able to scrape approximately **20,000 events for 1 CU**. However, y
 
 ## Number of results
 
-Set the maximum number of scraped events using the `maxItems` input field. 
+Set the maximum number of scraped events using the `maxItems` input field.
 
-> **_NOTE:_**  Ticketmaster limits searched results to 5100 with 300 items per 1 page (17 pages). If you need to scrape more events, you'll have to create multiple more specific input configurations that give you fewer search results and then combine the results together.
+> **_NOTE:_**  Ticketmaster limits searched results to 5100 with 200 items per 1 page (26 pages). If you need to scrape more events, you'll have to create multiple more specific input configurations that give you fewer search results and then combine the results together.
 
 ## Use Cases
 
@@ -89,7 +89,7 @@ Specify a desired `country` in the form of [ISO Alpha-2 Country Code](https://ww
 
 ### Date
 
-No date restrictions are set by default so all dates are scraped. If you wish to put some date restrictions, check `This Weekend` field or specify the date range. While setting the date range, you don't have to fill both `From` and `To` fields. If it suits you, fill one of them only. Inside the date section, `TBA` and `TBD` events filter is also handled. By choosing the appropriate value, you can exclude the events whose date is to be announced (TBA) or to be defined (TBD). Or you can go the other way round and include TBA and TBD events only. 
+No date restrictions are set by default so all dates are scraped. If you wish to put some date restrictions, check `This Weekend` field or specify the date range. While setting the date range, you don't have to fill both `From` and `To` fields. If it suits you, fill one of them only. Inside the date section, `TBA` and `TBD` events filter is also handled. By choosing the appropriate value, you can exclude the events whose date is to be announced (TBA) or to be defined (TBD). Or you can go the other way round and include TBA and TBD events only.
 
 ### Other
 
