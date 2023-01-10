@@ -11,6 +11,7 @@
                     "title": "Overview",
                     "transformation": {
                         "fields": [
+                            "image",
                             "name",
                             "description",
                             "segmentName",
@@ -33,6 +34,9 @@
                     "display": {
                         "component": "table",
                         "properties": {
+                            "image": {
+                                "format": "image"
+                            },
                             "segmentName": {
                                 "label": "Segment"
                             },

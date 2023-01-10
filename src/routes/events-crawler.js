@@ -106,7 +106,7 @@ function getEventsFromResponse(items) {
 
         // classification info
         const { id, name, url, genreName, segmentName } = item;
-        const { description } = jsonLd;
+        const { description, image } = jsonLd;
 
         // date
         const { datesFormatted: { dateTitle, dateSubTitle }, dates: { localDate, dateTBA, timeTBA } } = item;
@@ -114,6 +114,13 @@ function getEventsFromResponse(items) {
         // location
         const { location, offers, performer } = jsonLd;
         const { address: { streetAddress, addressLocality, addressRegion, postalCode, addressCountry } } = location;
+
+        // priceRanges
+        const priceRanges = (item.priceRanges || []).map((range) => {
+            // eslint-disable-next-line dot-notation
+            delete range['__typename'];
+            return range;
+        });
 
         const placeUrl = location.sameAs;
         const offerUrl = offers.url;
@@ -128,10 +135,11 @@ function getEventsFromResponse(items) {
         const performers = extractPerformers(performer);
 
         const event = {
-            ...{ id, url, name, description, segmentName, genreName },
+            ...{ id, url, name, description, image, segmentName, genreName },
             ...{ dateTitle, dateSubTitle, localDate, dateTBA, timeTBA },
             ...{ streetAddress, addressLocality, addressRegion, postalCode, addressCountry, placeUrl },
             offer,
+            priceRanges,
             performers,
         };
 
