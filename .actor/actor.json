@@ -1,0 +1,82 @@
+{
+    "actorSpecification": 1,
+    "name": "Ticketmaster Scraper",
+    "title": "Ticketmaster Scraper",
+    "version": "1.0.0",
+    "storages": {
+        "dataset": {
+            "actorSpecification": 1,
+            "views": {
+                "overview": {
+                    "title": "Overview",
+                    "transformation": {
+                        "fields": [
+                            "name",
+                            "description",
+                            "segmentName",
+                            "genreName",
+                            "dateTitle",
+                            "dateSubTitle",
+                            "streetAddress",
+                            "addressLocality",
+                            "addressRegion",
+                            "addressCountry",
+                            "offer.price",
+                            "offer.priceCurrency",
+                            "performers",
+                            "url"
+                        ],
+                        "flatten": [
+                            "offer"
+                        ]
+                    },
+                    "display": {
+                        "component": "table",
+                        "properties": {
+                            "segmentName": {
+                                "label": "Segment"
+                            },
+                            "genreName": {
+                                "label": "Genre"
+                            },
+                            "dateTitle": {
+                                "label": "Date"
+                            },
+                            "dateSubTitle": {
+                                "label": "Day & time"
+                            },
+                            "streetAddress": {
+                                "label": "Street"
+                            },
+                            "addressLocality": {
+                                "label": "Locality"
+                            },
+                            "addressRegion": {
+                                "label": "Region"
+                            },
+                            "addressCountry": {
+                                "label": "Country"
+                            },
+                            "offer.price": {
+                                "label": "Price",
+                                "format": "number"
+                            },
+                            "offer.priceCurrency": {
+                                "label": "Currency",
+                                "format": "text"
+                            },
+                            "performers": {
+                                "label": "Performers",
+                                "format": "array"
+                            },
+                            "url": {
+                                "label": "Link",
+                                "format": "link"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
