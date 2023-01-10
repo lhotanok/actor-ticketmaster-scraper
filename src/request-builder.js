@@ -56,7 +56,7 @@ function buildRequestVariables({
         locale: 'en-us',
         localeStr: 'en-us',
         page,
-        size: 300,
+        size: 200,
         sort: `${sort},${sortOrder}`,
         classificationId: classifications,
         lineupImages: true,
